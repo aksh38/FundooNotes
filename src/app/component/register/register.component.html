@@ -1,0 +1,34 @@
+
+<div class="registerDiv" fxLayoutAlign="center center"  fxLayout="column" >
+  <mat-card class="registerCard">
+    <mat-card-header>
+        <mat-card-title fxLayout="column" fxLayoutAlign="center center"  class="title">Register Page</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+        
+      <div class="registerInput" fxLayout="column" fxLayoutAlign="center center">
+        <mat-form-field>
+          <input  matInput placeholder="Enter Full Name" [(ngModel)]="usermodel.name">
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput [(ngModel)]="usermodel.userName" type="text"  placeholder="username">
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input  matInput [(ngModel)]="usermodel.password" type="password"  placeholder="password" >
+        </mat-form-field> 
+        
+        <mat-form-field>
+          <input  matInput [(ngModel)]="usermodel.emailId"  placeholder="email@mail.com" > </mat-form-field> 
+        
+        <mat-form-field> 
+          <input  matInput [(ngModel)]= "usermodel.mobileNumber" type="text"  placeholder="contact" >
+        </mat-form-field>
+
+        <button mat-raised-button (click)="onRegister()">Register</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

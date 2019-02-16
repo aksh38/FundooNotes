@@ -1,0 +1,86 @@
+.logo
+{
+    width: 45px;
+    height: 45px;
+}
+
+.searchInput
+{
+    border-radius: 8px;
+    width: 600px;
+    height: 47px;
+    border: 0px;
+    font-size: 15px;
+    background-color:rgba(236, 232, 226, 0.527);
+}
+.searchInputBox
+{
+    border-radius: 8px;
+    width: 600px;
+    height: 47px;
+    border: 0px;
+    font-size: 15px;
+    background-color:rgba(236, 232, 226, 0);
+
+    
+}
+.mat-toolbar
+{
+    position: flex;
+    background-color: white;
+}
+.buttonwrapper
+{
+    display: inline-block;
+}
+.profileButton{
+
+    margin: 20px;
+    background-color: orange;
+    color: white;
+    font-size: 20px;
+    
+}
+.searchButton
+{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-color:rgba(236, 232, 226, 0); 
+}
+.sideMenu
+{
+    position: relative;
+    margin-top: 0.5%;
+    width: flex;
+    height: 1080px;
+    background-color: white;
+
+}
+
+.menuButton:hover{
+    background-color: rgb(250, 245, 194);
+}
+.menuButton
+{
+    display: inline-block;
+    width: 285px;
+    height: 50px;
+    border-radius: 25px;
+    margin-left: -15px;
+    box-shadow: none;
+    font-size: 15px;
+    font: bold;
+    text-align: left;
+
+}
+.menuButton:focus
+{
+    background-color: rgb(250, 245, 194);
+}
+.systemIcon{
+    margin-left: 100px;
+}
+button:focus {outline:0;}
+
+input:focus{outline: 0}

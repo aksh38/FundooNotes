@@ -1,0 +1,92 @@
+
+<mat-toolbar class = "mat-toobar">
+  <mat-toolbar-row>
+      <button mat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+    <img mat-img class="logo" src="https://www.google.com/images/icons/product/keep-512.png">
+    <span>Fundoo Notes</span>
+
+    
+    <mat-card class="searchInput" style="margin-left:90px"fxLayoutAlign="center center" >
+          <button mat-icon-button class="searchButton"><mat-icon>search</mat-icon></button>
+          <input mat-input class="searchInputBox" placeholder="Search....">
+    </mat-card>
+    
+    <button mat-icon-button><mat-icon>refresh</mat-icon></button>
+    <button mat-icon-button><mat-icon *ngIf="show">view_stream</mat-icon><mat-icon *ngIf="!show">view_module</mat-icon></button>
+    <button mat-icon-button><mat-icon>settings</mat-icon></button>
+  <div class="systemIcon" fxLayoutAlign="right center">
+   
+    <button mat-icon-button style="margin-left: 20px"><mat-icon>notifications</mat-icon></button>
+
+    <button mat-icon-button class="profileButton" [matMenuTriggerFor]="profileMenu" >{{userName[0]}}</button>
+
+    <mat-menu #profileMenu="matMenu" >
+      <div  fxLayout="row" style="width:325px" matMenuItem>
+             <button mat-icon-button class="profileButton" style="width: 80px; height: 80px; font-size: 50px" >{{userName[0]}}</button>
+            <div fxLayout="column" fxLayoutAlign="left left">
+            <span>{{userName}}</span>
+            <span>{{email}}</span>
+            <button mat-button style="background-color: royalblue; margin-top: 25px">Log Out</button>
+          </div>
+    </div>
+    </mat-menu>
+  </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-divider></mat-divider>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+rel="stylesheet">
+
+<div class="flexContainer">
+<mat-drawer-container class="sideMenu" [hasBackdrop]="false">
+  <mat-drawer #drawer mode="side" style="border:0px" disableClose>
+    <div fxLayout=column>
+      <button mat-raised-button class="menuButton">
+        <mat-icon style="margin-right:40px;margin-left:20px">
+          lightbulb_outline
+        </mat-icon>
+         Notes
+      </button>
+      
+      <button mat-raised-button class="menuButton">
+        <mat-icon style="margin-right:40px;margin-left:20px">
+          add_alert
+        </mat-icon>
+        Reminders
+      </button>
+
+      <mat-divider style="margin: 7px"></mat-divider>
+
+      <span style="font-size: 12px;font-family:'Calibri'; margin-left: 20px">
+        LABELS
+      </span>
+      <button mat-raised-button class="menuButton">
+        <mat-icon style="margin-right:40px;margin-left:20px">
+          create
+        </mat-icon>
+        Edit Labels
+      </button>
+
+      <mat-divider style="margin: 7px"></mat-divider>
+      
+      <button mat-raised-button class="menuButton">
+        <mat-icon style="margin-right:40px;margin-left:20px">
+          archive
+        </mat-icon>
+        Archive
+      </button>
+      <button mat-raised-button class="menuButton">
+        <mat-icon style="margin-right:40px;margin-left:20px">
+          delete
+        </mat-icon>
+        Bin
+      </button>
+    </div>
+  </mat-drawer>
+  
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+</div>

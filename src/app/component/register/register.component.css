@@ -1,0 +1,32 @@
+.registerDiv
+{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.title
+{
+    margin-left: 1.7cm;
+    font-size: 0.7cm;
+}
+.registerInput>*
+{
+    width: 50;
+    margin-left: 0.5cm;
+}
+
+.registerCard
+{
+    border: 1px solid #ffffff;
+    background-color: lightslategray;
+    width: 9cm;
+    height: 11cm;
+    margin: 3cm; 
+}
+
+button
+{
+    width: 5cm;
+    
+}

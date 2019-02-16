@@ -1,0 +1,26 @@
+
+
+<div fxLayout="column" fxLayoutAlign="center center"  fxLayoutAlign.xs="center stretch" class="loginCard">
+<mat-card class="loginPageCard" >
+  <mat-card-header>
+    <mat-card-title class="title">Login Page</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="loginDiv">
+      <mat-form-field>
+        <input matInput placeholder="Enter Username" [(ngModel)]="loginmodel.userName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Password"  [(ngModel)]="loginmodel.password">
+      </mat-form-field>
+    
+      <a routerLink="/forgetPassword">Forget Password</a>
+
+      <button mat-raised-button (click)="loginUser()" >Login</button>
+      <button mat-raised-button routerLink='/register'>Register</button>
+    
+    </div>
+  </mat-card-content>
+</mat-card>
+</div>

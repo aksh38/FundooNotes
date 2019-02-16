@@ -1,0 +1,14 @@
+textarea
+{
+    resize: none; 
+    overflow: hidden;
+    border: 0px;
+    width: 500px;
+}
+
+button:focus {outline:0;}
+
+textarea:focus
+{
+    outline: 0;
+}

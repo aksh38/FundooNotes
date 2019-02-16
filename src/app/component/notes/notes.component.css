@@ -1,0 +1,82 @@
+.noteEditCard
+{
+    width: 600px;
+    height: 50px; 
+    border-radius: 8px;
+    margin-top: 30px;
+}
+.noteEditCard2
+{
+    width: 600px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+input
+{
+    border: 0px;
+    font-family:sans-serif;
+}
+
+
+.noteCardList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .noteCardList > * {
+    box-sizing: border-box;
+  }
+  .noteCardList > *:not(:last-child) {
+    margin-right: 32px;
+  }
+
+  .noteCard {
+    flex: 0 1 calc(33.3% - 32px);
+    width: 250px;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 50px;
+  }
+
+.buttons {
+    display: none;
+}
+
+.note:hover .buttons, .buttons:hover {
+    display: inline-block;
+}
+
+button:focus
+{
+  outline: 0;
+}
+input:focus{
+  outline: 0;
+}
+textarea
+{
+    resize: none; 
+    overflow: hidden;
+    border: 0px;
+    width: 500px;
+}
+
+textarea:focus
+{
+    outline: 0;
+}
+
+.colorPalleteButton
+{
+  width: 30px; 
+  height: 30px; 
+  margin:8px; 
+  
+}
+.colorPalleteButton:hover{
+  outline: 2px;
+  outline-style: dotted;
+  outline-color: grey;
+}

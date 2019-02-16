@@ -1,0 +1,34 @@
+.loginDiv {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .loginDiv > * {
+    width: 100;
+  
+  }
+  .loginPageCard {  
+    border: 1px solid #ffffff;
+    background-color: lightslategray;
+    width: 10cm;
+    height: 8.5cm; 
+ }
+.loginCard{
+  margin: 3.5cm;
+ }
+a
+{
+font-size: 0.35cm;
+}
+ button
+ {
+   margin-top: 0.2cm;
+   margin-bottom: 0.2cm;
+   background-color:whitesmoke;
+ }
+.title
+ {
+   font-size: 0.7cm;
+   font-family: Arial;
+  
+ }

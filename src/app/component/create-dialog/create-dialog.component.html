@@ -1,0 +1,20 @@
+<div fxLayout="column" fxLayoutAlign="center stretch" >
+  <span mat-dialog-title fxLayout="row">
+      <textarea matInput matTextareaAutosize matAutosizeMinRows=1 placeholder="Title" [(ngModel)]="data.title">{{data.title}}</textarea>
+      <span><button mat-icon-button><mat-icon>offline_pin</mat-icon></button></span>
+  </span>
+  <div mat-dialog-content>
+      <textarea matInput matTextareaAutosize matAutosizeMinRows=1 placeholder="Note" style="resize: none; overflow: hidden;" [(ngModel)]="data.description">{{data.description}}</textarea>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-icon-button><mat-icon>add_alert</mat-icon></button>
+    <button mat-icon-button><mat-icon>person_add</mat-icon></button>
+    <button mat-icon-button><mat-icon>palette</mat-icon></button>
+    <button mat-icon-button><mat-icon>add_photo_alternate</mat-icon></button>
+    <button mat-icon-button><mat-icon>archive</mat-icon></button>
+    <button mat-icon-button><mat-icon>more_vert</mat-icon></button>
+    <button mat-button style="margin-left: 230px; font-family: sans-serif; font: bolder;" (click)="onClick()">Close</button>
+  </div>
+</div>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons">
