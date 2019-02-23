@@ -6,9 +6,9 @@ export class Note{
     userId:number;
     title:String;
 	description:String;
-	archieve:Boolean;
-    trash:Boolean;
-	pin:Boolean;
+	archive:boolean;
+    trash:boolean;
+	pin:boolean;
 	imageUrl:String;
 	color:String;
     reminder:Date;

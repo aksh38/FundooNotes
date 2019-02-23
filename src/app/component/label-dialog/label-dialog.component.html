@@ -1,0 +1,23 @@
+
+<div fxLayout="column" fxLayoutAlign="center right" style="overflow:hidden; position: relative;">
+  <span style="margin-left: 12px"><h6 style="font-family: sans-serif">Edit Labels</h6></span>
+    <div mat-dialog-title fxLayout="row" >
+        <span><button mat-icon-button  class="labelButton" style="margin-left: 10px"><mat-icon>close</mat-icon></button></span>
+        <span><input matInput type="text" (input)="labelValue=$event.target.value" placeholder="create label" ></span>
+        <span><button mat-icon-button (click)="createLabel()" class="labelButton" style="position: absolute; right:1; margin-left: 20px"><mat-icon>check</mat-icon></button></span>
+    </div>
+    <mat-divider style="margin-top: -10px; margin-bottom:10px"></mat-divider>
+    <div mat-dialog-content fxLayout=column fxLayoutAlign="center center" style="width:100%; height: 100%;overflow-y: scroll; margin-right: -37px; box-sizing: content-box;position:sticky">
+        <span *ngFor="let label of labels" >
+          <button mat-icon-button class="labelButton" (click)="deleteLabel(label.labelId)"><mat-icon>delete</mat-icon></button>
+          <span><input matInput #myInput (change)="updateLabel(label)" type="text" value={{label.labelValue}} (input)="labelValue=$event.target.value" style="margin-right: 20px"/></span>
+          <button mat-icon-button (click)="focusInput(myInput)" class="labelButton"><mat-icon>edit</mat-icon></button>
+        </span>
+      </div>
+    <mat-divider style="margin-top:20px"></mat-divider>
+    <div mat-dialog-actions>
+      <button mat-raised-button style="font-family: sans-serif; width: 70px; height: 40px; margin-bottom: 20px; margin-left:170px" (click)="onClick()">Done</button>
+    </div>
+  </div>
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons">

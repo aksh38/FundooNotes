@@ -31,21 +31,34 @@ input
   .noteCardList > *:not(:last-child) {
     margin-right: 32px;
   }
-
+  .mat-card-footer
+  {
+    flex-shrink: 0;
+  }
   .noteCard {
     flex: 0 1 calc(33.3% - 32px);
     width: 250px;
     margin-left: 8px;
     margin-right: 8px;
-    margin-top: 50px;
   }
 
-.buttons {
-    display: none;
+.buttons {  
+  display: none;
 }
 
-.note:hover .buttons, .buttons:hover {
+.noteGrid:hover .buttons, .buttons:hover{
+    
     display: inline-block;
+}
+
+.noteList:hover .buttons, .buttons:hover{
+    
+  display: inline-block;
+}
+
+.noteList
+{
+  width: 100%;
 }
 
 button:focus
@@ -57,17 +70,33 @@ input:focus{
 }
 textarea
 {
-    resize: none; 
     overflow: hidden;
     border: 0px;
     width: 500px;
+    word-wrap: break-word; 
+    white-space: pre-wrap; /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap;
 }
-
+.mat-card .last-child {
+  margin-bottom: 0;
+}
 textarea:focus
 {
     outline: 0;
 }
-
+textarea
+{
+    overflow: hidden;
+    border: 0px;
+    width: 200px;
+    word-wrap: break-word; 
+    white-space: pre-wrap; /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+}
 .colorPalleteButton
 {
   width: 30px; 
@@ -80,3 +109,31 @@ textarea:focus
   outline-style: dotted;
   outline-color: grey;
 }
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate {
+  background-color:rgb(136, 133, 133) !important; 
+}
+
+.noteLabels
+{
+  margin-right: 10px;
+  width:fit-content;
+  font-style: "sans-serif";
+  background-repeat: round;
+  background-color: rgba(188, 190, 190, 0.250);
+  zoom:0.8;
+}
+
+.cancleIcon
+{
+  margin-right: -10px;
+  display: none;
+}
+
+.noteLabels:hover .cancleIcon, .cancleIcon:hover{
+  width: 30px;
+  height: 30px;
+  margin-left: -20px;
+  background-color: rgba(151, 147, 147, 0.753);
+  display: inline-block;
+}
+

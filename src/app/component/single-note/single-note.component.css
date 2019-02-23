@@ -38,8 +38,6 @@ input
   .noteCard {
     flex: 0 1 calc(33.3% - 32px);
     width: 250px;
-    margin-left: 8px;
-    margin-right: 8px;
   }
 
 .buttons {  
@@ -86,7 +84,17 @@ textarea:focus
 {
     outline: 0;
 }
-
+textarea
+{
+    overflow: hidden;
+    border: 0px;
+    width: 200px;
+    word-wrap: break-word; 
+    white-space: pre-wrap; /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+}
 .colorPalleteButton
 {
   width: 30px; 
@@ -126,3 +134,4 @@ textarea:focus
   background-color: rgba(151, 147, 147, 0.753);
   display: inline-block;
 }
+

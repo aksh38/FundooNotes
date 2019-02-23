@@ -2,8 +2,8 @@ import { Note } from "./note.model";
 
 export class Label
 {
-    labelId:Number;
-    userId:Number;
+    labelId:LongRange;
+    userId:LongRange;
     labelValue:String;
     notes:Note[];
 }

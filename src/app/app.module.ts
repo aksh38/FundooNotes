@@ -13,13 +13,20 @@ import { from } from 'rxjs';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { MaterialModule } from 'src/material-module';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule} from '@angular/flex-layout';
 import { LoginVerifyComponent } from './component/verification/login-verify/login-verify.component';
 import { ForgetVerifyComponent } from './component/verification/forget-verify/forget-verify.component';
 import { HomeComponent } from './component/home/home.component';
 import { NotesComponent } from './component/notes/notes.component';
 import { NotesService } from './service/notes.service';
 import { CreateDialogComponent } from './component/create-dialog/create-dialog.component';
+import { ArchiveNotesComponent } from './component/archive-notes/archive-notes.component';
+import { BinComponent } from './component/bin/bin.component';
+import { LabeledNoteComponent } from './component/labeled-note/labeled-note.component';
+import { LabelService } from './service/label.service';
+import { LabelDialogComponent } from './component/label-dialog/label-dialog.component';
+import { ChangeViewService } from './service/change-view.service';
+import { SingleNoteComponent } from './component/single-note/single-note.component';
 
 
 @NgModule({
@@ -33,8 +40,12 @@ import { CreateDialogComponent } from './component/create-dialog/create-dialog.c
     ForgetVerifyComponent,
     HomeComponent,
     NotesComponent,
-    CreateDialogComponent
-       
+    CreateDialogComponent,
+    ArchiveNotesComponent,
+    BinComponent,
+    LabeledNoteComponent,
+    LabelDialogComponent,
+    SingleNoteComponent   
   ],
   imports: [
     BrowserModule,
@@ -48,11 +59,14 @@ import { CreateDialogComponent } from './component/create-dialog/create-dialog.c
   ],
   entryComponents:
   [
-    CreateDialogComponent
+    CreateDialogComponent,
+    LabelDialogComponent
   ],
   providers: [
     UserService,
-    NotesService
+    NotesService,
+    LabelService,
+    ChangeViewService
   ],
   bootstrap: [AppComponent]
 })

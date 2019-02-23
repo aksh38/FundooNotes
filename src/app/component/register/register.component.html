@@ -9,22 +9,21 @@
         
       <div class="registerInput" fxLayout="column" fxLayoutAlign="center center">
         <mat-form-field>
-          <input  matInput placeholder="Enter Full Name" [(ngModel)]="usermodel.name">
+          <input  matInput placeholder="Enter Full Name" [(ngModel)]="usermodel.name" required>
         </mat-form-field>
         
         <mat-form-field>
-          <input matInput [(ngModel)]="usermodel.userName" type="text"  placeholder="username">
+          <input matInput [(ngModel)]="usermodel.userName" type="text"  placeholder="username" required minlength="3">
         </mat-form-field>
         
         <mat-form-field>
-          <input  matInput [(ngModel)]="usermodel.password" type="password"  placeholder="password" >
+          <input  matInput [(ngModel)]="usermodel.password" type="password"  placeholder="password" required minlength="8">
         </mat-form-field> 
         
         <mat-form-field>
-          <input  matInput [(ngModel)]="usermodel.emailId"  placeholder="email@mail.com" > </mat-form-field> 
-        
+          <input  matInput type="email" [(ngModel)]="usermodel.emailId"  placeholder="email@mail.com" required></mat-form-field>         
         <mat-form-field> 
-          <input  matInput [(ngModel)]= "usermodel.mobileNumber" type="text"  placeholder="contact" >
+          <input  matInput [(ngModel)]= "usermodel.mobileNumber" type="text"  placeholder="contact" minlength="10">
         </mat-form-field>
 
         <button mat-raised-button (click)="onRegister()">Register</button>

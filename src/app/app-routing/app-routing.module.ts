@@ -9,6 +9,9 @@ import { LoginVerifyComponent } from '../component/verification/login-verify/log
 import { ForgetVerifyComponent } from '../component/verification/forget-verify/forget-verify.component';
 import { HomeComponent } from '../component/home/home.component';
 import { NotesComponent } from '../component/notes/notes.component';
+import { ArchiveNotesComponent } from '../component/archive-notes/archive-notes.component';
+import { BinComponent } from '../component/bin/bin.component';
+import { LabeledNoteComponent } from '../component/labeled-note/labeled-note.component';
 
 const routes: Routes=[
   {
@@ -47,6 +50,20 @@ const routes: Routes=[
       {
         path:'notes',
         component:NotesComponent
+      },
+      {
+        path:'archive',
+        component:ArchiveNotesComponent
+      },
+      {
+        path:'bin',
+        component:BinComponent
+
+      },
+      {
+        path:'labels/:labelValue',
+        component:LabeledNoteComponent,
+        runGuardsAndResolvers:"always"
       }
     ]
 
@@ -61,7 +78,7 @@ const routes: Routes=[
 @NgModule({
 
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes,{onSameUrlNavigation: 'reload'}),
     MatFormFieldModule
   ],
   exports:[RouterModule, MatFormFieldModule],

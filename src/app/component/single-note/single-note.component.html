@@ -1,0 +1,95 @@
+    
+     <div *ngIf="myNote.title !==''">
+        <div class="noteGrid"> 
+        <mat-card fxFlex style="margin-top: 30px;width: 250px; border-radius: 15px" [style.background-color]="myNote.color">
+           <mat-card-header >
+            <mat-card-title (click)="openCreateDialog(myNote)">
+              <span style="font-size: 17px; width: 100%; font-family: sans-serif;">{{myNote.title}}</span>
+            </mat-card-title>
+            <span style="position: absolute; right: 0;" class="buttons" >
+                <button mat-icon-button (click)="pinIt(myNote)">
+                  <mat-icon *ngIf="!myNote.pin">
+                    <img style="width:10px; height:16px"src="http://cdn.onlinewebfonts.com/svg/img_226200.png">
+                  </mat-icon>
+                  <mat-icon *ngIf="myNote.pin">
+                      <img style="width:10px; height:16px"src="https://ya-webdesign.com/images/thumbtack-icon-png-14.png">
+                    </mat-icon>
+                </button>
+              </span>
+          </mat-card-header>
+          
+            <mat-card-content style="margin-bottom: 40px" (click)="openCreateDialog(myNote)">
+              <span>{{myNote.description}}</span>
+            </mat-card-content>
+            <div style="margin-top:-30px; margin-bottom:30px">
+            <mat-chip-list #chipList>
+              <div  *ngFor="let label of myNote.labels">
+                <mat-chip class="noteLabels" routerLink="../labels/{{label.labelValue}}">{{label.labelValue}}
+                  <button mat-icon-button class="cancleIcon">
+                  <mat-icon matChipRemove (click)="removeLabel(label.labelId, myNote.noteId)" style="margin-top: -18px; margin-left: -3px" >close</mat-icon>
+                </button>
+              </mat-chip>
+              </div>
+            </mat-chip-list>
+          </div>
+          <div class="buttons" style="position: absolute; margin-top:-30px">
+            <mat-card-footer style="margin-bottom:10px">
+                
+              <button mat-icon-button><mat-icon>add_alert</mat-icon></button>
+              <button mat-icon-button><mat-icon>person_add</mat-icon></button>
+              <button mat-icon-button [matMenuTriggerFor]="colorMenu"><mat-icon>palette</mat-icon></button>
+
+              <mat-menu #colorMenu="matMenu">
+                  <div *ngFor="let colors of colorsPallete">
+                    <span *ngFor="let item of colors">
+                      <button mat-icon-button  [style.background-color]="item" class="colorPalleteButton" (click)= "changeColor2(item, myNote)">
+                        <mat-icon ></mat-icon>
+                      </button>
+                    </span>
+                  </div>
+                </mat-menu>
+              <button mat-icon-button><mat-icon>add_photo_alternate</mat-icon></button>
+              <span *ngIf="!myNote.archive">
+              <button mat-icon-button  (click)="archiveNote(myNote)">
+                <mat-icon >archive</mat-icon>
+              </button>
+            </span>
+            <span *ngIf="myNote.archive">
+              <button mat-icon-button (click)="unArchiveNote(myNote)">
+                  <mat-icon >unarchive</mat-icon>
+                </button>
+              </span>
+              <button mat-icon-button [matMenuTriggerFor]="cardMenu"><mat-icon>more_vert</mat-icon></button>
+                <mat-menu #cardMenu="matMenu" (click)="stopPropagation($event);">
+                  <button mat-menu-item (click)="trashNote(myNote)">Delete Note</button>
+                  <button mat-menu-item [matMenuTriggerFor]="labelMenu" >Add Label</button>
+                
+                  <mat-menu #labelMenu="matMenu" fxLayout="column"  (click)="$event.stopPropagation();">
+                
+                    <div>
+                      <span style="font-family: sans-serif; font-size: 15px; margin-left: 10px">
+                        Label note
+                      </span>
+                    </div>
+                    <div><input matInput (change)="changeShow()" (input)="onSearchChange($event.target.value)" (click)="stopPropagation($event)" placeholder="Enter label name"style="font-family: sans-serif; font-size: 12px; margin-bottom:10px;margin-left: 10px">
+                      <mat-icon style="zoom:0.7; color: grey">search</mat-icon></div>
+                    <div style="margin-bottom: 25px; margin-left: 10px" >
+                    <div *ngFor="let label of labels" >
+                        <mat-checkbox (click)="$event.stopPropagation()" (change)="addLabelToNote($event, label.labelId, myNote.noteId)"  style="font-family: sans-serif; color: black; zoom:0.8">{{label.labelValue}}</mat-checkbox>
+                    </div>
+                    </div>
+                    <div *ngIf="show===true">
+                      <button mat-menu-item style="zoom:0.8; position: absolute; bottom: 0;" (click)="createNewLabel($event, myNote.noteId, searchLabelValue)">
+                        <mat-icon>add</mat-icon>Create label {{searchLabelValue}}</button>
+                    </div>
+                    </mat-menu>
+                  <button mat-menu-item>Make a copy</button>
+                </mat-menu>
+                    
+            </mat-card-footer>
+          </div>
+        </mat-card>
+      </div>
+      </div>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+rel="stylesheet">

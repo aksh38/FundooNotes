@@ -12,7 +12,9 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   private loginmodel:Login=new Login();
-  constructor(private userService : UserService, private snackBar:MatSnackBar, private router:Router) { }
+  constructor(private userService : UserService,
+              private snackBar:MatSnackBar,
+              private router:Router) { }
 
   ngOnInit() {  
 

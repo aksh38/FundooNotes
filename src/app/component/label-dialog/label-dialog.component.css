@@ -1,0 +1,44 @@
+.labelButton:focus{
+    outline: 0;
+}
+input:focus
+{
+    outline: 0;
+}
+
+.labelButton{
+    width: 15px;
+    height: 15px;
+    color: grey;
+
+}
+
+input[type=text]{
+    margin-left: 20px;
+    width:150px; 
+    height:20px; 
+    font-size: 15px;
+    font: bold;
+    border: none;
+}
+
+input[type=text]:focus{
+    background: transparent;
+    
+    border-bottom: 0.5px solid #999797ef
+}
+
+.labelButton:hover
+{
+    color: black;
+}
+
+button:focus
+{
+    outline: 0;
+}
+::-webkit-scrollbar { 
+    display: none;  
+    width: 1em;
+    height: 600px;
+}

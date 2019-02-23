@@ -8,11 +8,11 @@
   <mat-card-content>
     <div class="loginDiv">
       <mat-form-field>
-        <input matInput placeholder="Enter Username" [(ngModel)]="loginmodel.userName">
+        <input matInput id='userName' placeholder="Enter Username" [(ngModel)]="loginmodel.userName" required minlength="5">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Enter Password"  [(ngModel)]="loginmodel.password">
+        <input matInput id='password' type="password" placeholder="Enter Password"  [(ngModel)]="loginmodel.password" required>
       </mat-form-field>
     
       <a routerLink="/forgetPassword">Forget Password</a>

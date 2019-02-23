@@ -1,6 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { User } from 'src/app/model/user.model';
+import { LabelService } from 'src/app/service/label.service';
+import { Label } from 'src/app/model/label.model';
+import { Router } from '@angular/router';
+import { LabelDialogComponent } from '../label-dialog/label-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +17,10 @@ export class HomeComponent implements OnInit {
   private userName: String;
   private email:String;
   private data:User;
-  constructor(private userService:UserService) { 
+  private labels:Label[];
+
+  constructor(private userService:UserService, private labelService:LabelService, private router:Router,private dialog:MatDialog) { 
+    this.getLabels();
      this.userName=localStorage.getItem("userName");
      this.userService.getUser(this.userName).subscribe((result)=>{
      this.data=result;
@@ -21,8 +29,24 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit() {
 
-    this.userService;
+  }
 
+  getLabels()
+  {
+    this.labelService.getLabels().subscribe(
+      (data)=> this.labels=data
+    );
+  }
+
+  openLabelDialog():void
+  {
+    const dialogRef = this.dialog.open(LabelDialogComponent, {
+      width: '320px',
+      data: this.labels
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.getLabels();
+          });
   }
 
 }

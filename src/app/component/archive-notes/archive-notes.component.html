@@ -1,0 +1,11 @@
+<div fxLayout="column" fxLayoutAlign="left center" style="overflow: hidden; padding-left: 100px; ">
+  <span style="margin-top:40px;font-size: 10px;" *ngIf="pinnedNotes ? pinnedNotes.length>0: false ">OTHERS</span>
+  <div fxLayout="row" fxLayoutAlign="right right" style="margin-top: 20px;">
+    <div fxLayout="row wrap" fxLayoutGap="25px" fxLayoutAlign="flex-start" fxLayoutAlign.xs="center center">
+      <ng-container *ngFor="let note of archivedNotes">
+        <app-single-note [myNote]=note>
+        </app-single-note>
+      </ng-container>
+    </div>
+  </div>
+</div>

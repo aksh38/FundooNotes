@@ -3,13 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Note } from '../model/note.model';
 import { Observable } from 'rxjs';
 import { NoteDto } from '../model/noteDto.model';
-import { GetNoteDto } from '../model/getNotes.model';
+import { Label } from '../model/label.model';
 
-const httpOptions = {
 
-  headers: new HttpHeaders({
-                "jwt_token":localStorage.getItem("token")}
-        )} ;
+const httpOptions = 
+              {headers: new HttpHeaders({"Content-Type":"application/json",
+                                        "jwt_token":localStorage.getItem("token")})};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,9 +19,9 @@ export class NotesService {
 
   constructor(private http:HttpClient){}
 
-  getNotes(archived:boolean, trashed:boolean, pinned:boolean):Observable<Note[]>
+  getNotes(archived:boolean, trashed:boolean):Observable<Note[]>
   {
-    return this.http.get<Note[]>(this.apiUrl+"?archived="+archived+"&trashed="+trashed+"&pinned="+pinned, httpOptions);
+    return this.http.get<Note[]>(this.apiUrl+"?archived="+archived+"&trashed="+trashed, httpOptions);
   }
 
   updateNote(note:Note)
@@ -35,7 +35,33 @@ export class NotesService {
 
   archiveNote(note:Note)
   {
-    note.archieve=!note.archieve;
+    console.log(note.archive);
+
+    return this.http.put<Note>(this.apiUrl+"/archive", note, httpOptions);
+  }
+
+  trashNote(note:Note)
+  {
+    note.trash=!note.trash;
     return this.http.put<Note>(this.apiUrl, note, httpOptions);
+  }
+
+  deleteNote(note:Note)
+  {
+    return this.http.delete<Note>(this.apiUrl+"?noteId="+note.noteId, httpOptions);
+  }
+  pinNote(note:Note)
+  {
+    note.pin=!note.pin;
+    return this.http.put<Note>(this.apiUrl, note, httpOptions)
+  }
+  addLabelToNote(labelId:LongRange, noteId:LongRange)
+  {
+    return this.http.post(this.apiUrl+"addLabel?labelId="+labelId+"&noteId="+noteId, httpOptions);
+  }
+
+  removeLabelToNote(labelId:LongRange, noteId:LongRange)
+  {
+    return this.http.delete<Label>(this.apiUrl+"removeLabels/"+noteId+"/"+labelId, httpOptions);
   }
 }
