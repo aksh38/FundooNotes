@@ -10,6 +10,7 @@ import { Label } from 'src/app/model/label.model';
 import { ViewDto } from 'src/app/model/view.model';
 import { LabelDto } from 'src/app/model/labelDto.model';
 import { UpdateNotesService } from 'src/app/service/update-notes.service';
+import { ChangeViewService } from 'src/app/service/change-view.service';
 
 @Component({
   selector: 'app-single-note',
@@ -27,6 +28,7 @@ export class SingleNoteComponent implements OnInit {
   private viewDto = new ViewDto();
   private notes:Note[];
   private pinnedNotes:Note[];
+  private view:string;
   private colorsPallete: string[][] = [['white', 'lightblue', 'lightcoral', 'lightgray'],
   ['lightgreen', 'lightpink', 'lightsalmon', 'lightyellow'],
   ['lightcyan', 'lightskyblue', 'lightseagreen', 'tan']];
@@ -38,6 +40,7 @@ export class SingleNoteComponent implements OnInit {
     private noteService:NotesService,
     private labelService:LabelService,
     private updateService:UpdateNotesService,
+    private changeViewService:ChangeViewService,
     private snackBar:MatSnackBar,
     private dialog:MatDialog,
     private router:Router
@@ -46,6 +49,7 @@ export class SingleNoteComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
   pinIt(note: Note) {
@@ -189,4 +193,15 @@ export class SingleNoteComponent implements OnInit {
     this.noteService.addLabelToNote
   }
 
+  change(flag:boolean)
+  {
+    if(flag)
+    {
+      this.viewDto.viewClass="noteList";
+    }
+    else
+    {
+      this.viewDto.viewClass="noteGrid";
+    }
+  }
 }

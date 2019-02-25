@@ -1,36 +1,28 @@
 import { Injectable } from '@angular/core';
 import { ViewDto } from '../model/view.model';
+import { BehaviorSubject } from 'rxjs';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChangeViewService {
-  private viewStyle:string;
-  private viewClass:string;
-  private viewDto:ViewDto;
+  
+  private view=new BehaviorSubject(false);
+  currentView= this.view.asObservable();
+
+  private xyz;
+
   constructor() { 
-        this.viewStyle="row wrap";
-        this.viewClass  ="noteGrid";
   }
 
-  changeView(viewFlag:boolean)
+  changeView()
   {
-      if(!viewFlag)
-      {
-        this.viewStyle="row wrap";
-        this.viewClass  ="noteGrid";
-      }
-      else
-      {
-        this.viewStyle="column wrap";
-        this.viewClass="noteList";
-      }
+    this.currentView.subscribe(
+      response=>
+      this.xyz=response
+    )
+    this.view.next(!this.xyz);
   }
-
-  getCurrentView():ViewDto
-  {
-    this.viewDto.viewStyle=this.viewStyle;
-    this.viewDto.viewClass=this.viewClass;
-    return this.viewDto;
-  }
+  
 }

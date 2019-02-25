@@ -6,6 +6,7 @@ import { Label } from 'src/app/model/label.model';
 import { Router } from '@angular/router';
 import { LabelDialogComponent } from '../label-dialog/label-dialog.component';
 import { MatDialog } from '@angular/material';
+import { ChangeViewService } from 'src/app/service/change-view.service';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +19,13 @@ export class HomeComponent implements OnInit {
   private email:String;
   private data:User;
   private labels:Label[];
+  private show:boolean=false;
 
-  constructor(private userService:UserService, private labelService:LabelService, private router:Router,private dialog:MatDialog) { 
+  constructor(private userService:UserService, 
+              private labelService:LabelService, 
+              private router:Router,
+              private dialog:MatDialog,
+              private changeViewService:ChangeViewService) { 
     this.getLabels();
      this.userName=localStorage.getItem("userName");
      this.userService.getUser(this.userName).subscribe((result)=>{
@@ -47,6 +53,12 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.getLabels();
           });
+  }
+
+  changeView(show:boolean)
+  {
+    this.show=!show;
+    this.changeViewService.changeView();
   }
 
 }

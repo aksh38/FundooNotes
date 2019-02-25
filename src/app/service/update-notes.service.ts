@@ -8,8 +8,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class UpdateNotesService {
 
-  private allNotes=new BehaviorSubject([]);
-  currentNote=this.allNotes.asObservable();
+  private notes=new BehaviorSubject([]);
+  currentNote=this.notes.asObservable();
   private trashed:boolean=false;
   private archived:boolean=false;
   
@@ -18,7 +18,7 @@ export class UpdateNotesService {
     this.noteService.getNotes( this.archived, this.trashed).subscribe(
       response=>
       {
-        this.allNotes.next(response)
+        this.notes.next(response)
       },
       error=>
       {
@@ -35,13 +35,13 @@ export class UpdateNotesService {
       this.noteService.getNotes( this.archived, this.trashed).subscribe(
       response=>
       {
-        this.allNotes.next(response)
+        this.notes.next(response)
       },
       error=>
       {
         console.log(error);
       }
     )
-    return this.allNotes.asObservable();
+    return this.notes.asObservable();
    }
 }

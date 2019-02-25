@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { LabelService } from 'src/app/service/label.service';
 import { Label } from 'src/app/model/label.model';
 import { UpdateNotesService } from 'src/app/service/update-notes.service';
+import { ViewDto } from 'src/app/model/view.model';
+import { ChangeViewService } from 'src/app/service/change-view.service';
 
 @Component({
   selector: 'app-notes',
@@ -19,16 +21,22 @@ export class NotesComponent implements OnInit {
   private notes: Note[];
   private pinnedNotes: Note[];
   private expand:boolean=false;
+  private viewDto=new ViewDto();
   private noteDto=new NoteDto();
   private labels:Label[];
 
   constructor(
     private noteService: NotesService,
     private labelService:LabelService,
+    private changeView:ChangeViewService,
     private snackBar: MatSnackBar,
     private router: Router,
     private updateService:UpdateNotesService) {
     
+    this.changeView.currentView.subscribe(
+      response=>
+      this.change(response)
+    )
     this.getLabels();
 
   }
@@ -78,7 +86,17 @@ export class NotesComponent implements OnInit {
 
   }
 
-  
+  change(flag:boolean)
+  {
+    if(flag)
+    {
+      this.viewDto.viewStyle="column wrap";
+    }
+    else
+    {
+      this.viewDto.viewStyle="row wrap";
+    }
+  }
 
   notesFilter()
   {

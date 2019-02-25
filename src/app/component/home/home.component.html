@@ -12,7 +12,7 @@
     </mat-card>
     
     <button mat-icon-button><mat-icon>refresh</mat-icon></button>
-    <button mat-icon-button><mat-icon *ngIf="show">view_stream</mat-icon><mat-icon *ngIf="!show">view_module</mat-icon></button>
+    <button mat-icon-button (click)="changeView(show)"><mat-icon *ngIf="show">view_stream</mat-icon><mat-icon *ngIf="!show">view_module</mat-icon></button>
     <button mat-icon-button><mat-icon>settings</mat-icon></button>
   <div class="systemIcon" fxLayoutAlign="right center">
    
