@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Note } from 'src/app/model/note.model';
 import { NotesService } from 'src/app/service/notes.service';
 import { MatSnackBar } from '@angular/material';
+import { ViewDto } from 'src/app/model/view.model';
+import { ChangeViewService } from 'src/app/service/change-view.service';
 
 @Component({
   selector: 'app-bin',
@@ -11,8 +13,17 @@ import { MatSnackBar } from '@angular/material';
 export class BinComponent implements OnInit {
 
   private trashedNotes:Note[];
+  private viewDto:ViewDto=new ViewDto();
+  constructor(
+    private noteService:NotesService, 
+    private snackBar:MatSnackBar,
+    private changeView:ChangeViewService
+    ) {
 
-  constructor(private noteService:NotesService, private snackBar:MatSnackBar) {
+      this.changeView.currentView.subscribe(
+        response=>
+        this.change(response)
+      )
     this.getTrashNotes();
    }
 
@@ -43,5 +54,17 @@ export class BinComponent implements OnInit {
             this.getTrashNotes();
             this.snackBar.open(response.statusMessage, "", {duration:2000, verticalPosition:"top"});
         }); 
+  }
+
+  change(flag:boolean)
+  {
+    if(flag)
+    {
+      this.viewDto.viewStyle="column wrap";
+    }
+    else
+    {
+      this.viewDto.viewStyle="row wrap";
+    }
   }
 }

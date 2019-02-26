@@ -9,6 +9,8 @@ import { LabelService } from 'src/app/service/label.service';
 import { Label } from 'src/app/model/label.model';
 import { LabelDto } from 'src/app/model/labelDto.model';
 import { UpdateNotesService } from 'src/app/service/update-notes.service';
+import { ChangeViewService } from 'src/app/service/change-view.service';
+import { ViewDto } from 'src/app/model/view.model';
 
 @Component({
   selector: 'app-archive-notes',
@@ -18,9 +20,10 @@ import { UpdateNotesService } from 'src/app/service/update-notes.service';
 export class ArchiveNotesComponent implements OnInit {
 
   private archivedNotes:Note[];
-  
+  private viewDto:ViewDto=new ViewDto();
   constructor(
-    private updateService:UpdateNotesService
+    private updateService:UpdateNotesService,
+    private changeView:ChangeViewService
     ) {
       this.updateService.changeUpdate(true, false).subscribe(
         response=>{
@@ -29,8 +32,25 @@ export class ArchiveNotesComponent implements OnInit {
         this.archivedNotes=response;
         }
       );
+
+      this.changeView.currentView.subscribe(
+        response=>
+        this.change(response)
+      )
   }
 
   ngOnInit() {
+  }
+
+  change(flag:boolean)
+  {
+    if(flag)
+    {
+      this.viewDto.viewStyle="column wrap";
+    }
+    else
+    {
+      this.viewDto.viewStyle="row wrap";
+    }
   }
 }

@@ -20,7 +20,7 @@ import { ChangeViewService } from 'src/app/service/change-view.service';
 })
 export class SingleNoteComponent implements OnInit {
 
-  @Input() private myNote:Note;
+  @Input() private myNote:Note=new Note();
   private noteDto: NoteDto = new NoteDto;
   private expand: boolean = false;
   private labels: Label[];
@@ -40,7 +40,6 @@ export class SingleNoteComponent implements OnInit {
     private noteService:NotesService,
     private labelService:LabelService,
     private updateService:UpdateNotesService,
-    private changeViewService:ChangeViewService,
     private snackBar:MatSnackBar,
     private dialog:MatDialog,
     private router:Router
@@ -56,8 +55,8 @@ export class SingleNoteComponent implements OnInit {
     note.archive=false;
     this.noteService.pinNote(note).subscribe((response: any) => {
       this.snackBar.open(response.statusMessage, "", { duration: 2000, verticalPosition: "top" });
-      this.updateService.changeUpdate(false, false);
     });
+    this.updateService.changeUpdate(false, false);
   }
   openCreateDialog(note: Note): void {
     const dialogRef = this.dialog.open(CreateDialogComponent, {

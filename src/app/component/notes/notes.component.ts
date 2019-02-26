@@ -45,6 +45,7 @@ export class NotesComponent implements OnInit {
     this.updateService.changeUpdate(false, false).subscribe(
       response=>{
         console.log(response);
+        response.forEach(note=> note.archive=false);
       this.allNotes=response;
       this.notesFilter();
       }

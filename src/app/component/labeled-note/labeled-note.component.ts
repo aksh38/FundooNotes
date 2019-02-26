@@ -3,6 +3,8 @@ import { Label } from 'src/app/model/label.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LabelService } from 'src/app/service/label.service';
 import { Note } from 'src/app/model/note.model';
+import { ChangeViewService } from 'src/app/service/change-view.service';
+import { ViewDto } from 'src/app/model/view.model';
 
 @Component({
   selector: 'app-labeled-note',
@@ -14,7 +16,12 @@ export class LabeledNoteComponent implements OnInit {
   private label:Label;
   private notes:Note[];
   private pinnedNotes:Note[];
-  constructor(private activatedRoute:ActivatedRoute, private labelService:LabelService, private router:Router) { 
+  private viewDto: ViewDto=new ViewDto();
+  constructor(
+    private activatedRoute:ActivatedRoute, 
+    private labelService:LabelService,
+    private router:Router,
+    private changeView:ChangeViewService) { 
     this.labelValue=this.activatedRoute.snapshot.params['labelValue'];
     console.log(this.labelValue)
     this.getLabeledNotes();
@@ -28,7 +35,13 @@ export class LabeledNoteComponent implements OnInit {
            this.labelValue=this.activatedRoute.snapshot.params['labelValue'];
            this.getLabeledNotes();
         }
-      )
+      );
+
+    this.changeView.currentView.subscribe(
+      response=>
+      this.change(response)
+    )
+
   }
 
   getLabeledNotes()
@@ -40,4 +53,15 @@ export class LabeledNoteComponent implements OnInit {
       });
   }
 
+  change(flag:boolean)
+  {
+    if(flag)
+    {
+      this.viewDto.viewStyle="column wrap";
+    }
+    else
+    {
+      this.viewDto.viewStyle="row wrap";
+    }
+  }
 }

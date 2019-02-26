@@ -35,8 +35,7 @@ export class NotesService {
 
   archiveNote(note:Note)
   {
-    console.log(note.archive);
-
+    
     return this.http.put<Note>(this.apiUrl+"/archive", note, httpOptions);
   }
 

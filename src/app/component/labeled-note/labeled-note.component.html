@@ -63,7 +63,7 @@
   <div>
   <span style="margin-top:30px;font-size: 10px;"  *ngIf="pinnedNotes ? pinnedNotes.length>0: false ">PINNED</span>
   <div fxLayout="row" fxLayoutAlign="right right">
-    <div fxLayout="row wrap" fxLayoutGap="25px" fxLayoutAlign="flex-start" fxLayoutAlign.xs="center center">
+    <div fxLayout={{viewDto.viewStyle}} fxLayoutGap="25px" fxLayoutAlign="flex-start" fxLayoutAlign.xs="center center">
       <ng-container *ngFor="let note of pinnedNotes" >
         <app-single-note [myNote]=note>
             </app-single-note>
@@ -72,7 +72,7 @@
   </div> 
   <span style="margin-top:30px;font-size: 10px;" *ngIf="pinnedNotes ? pinnedNotes.length>0: false ">OTHERS</span>
     <div fxLayout="row" fxLayoutAlign="right right" style="margin-top: 20px;">
-      <div fxLayout="row wrap" fxLayoutGap="25px" fxLayoutAlign="flex-start" fxLayoutAlign.xs="center center">
+      <div fxLayout={{viewDto.viewStyle}} fxLayoutGap="25px" fxLayoutAlign="flex-start" fxLayoutAlign.xs="center center">
           <ng-container *ngFor="let note of notes" >
             <app-single-note [myNote]=note>
                 </app-single-note>
