@@ -40,7 +40,7 @@ export class LabeledNoteComponent implements OnInit {
     this.changeView.currentView.subscribe(
       response=>
       this.change(response)
-    )
+    );
 
   }
 

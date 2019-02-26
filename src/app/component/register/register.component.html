@@ -5,8 +5,7 @@
         <mat-card-title fxLayout="column" fxLayoutAlign="center center"  class="title">Register Page</mat-card-title>
     </mat-card-header>
   
-    <mat-card-content>
-        
+    <mat-card-content>      
       <div class="registerInput" fxLayout="column" fxLayoutAlign="center center">
         <mat-form-field>
           <input  matInput placeholder="Enter Full Name" [(ngModel)]="usermodel.name" required>
@@ -25,7 +24,6 @@
         <mat-form-field> 
           <input  matInput [(ngModel)]= "usermodel.mobileNumber" type="text"  placeholder="contact" minlength="10">
         </mat-form-field>
-
         <button mat-raised-button (click)="onRegister()">Register</button>
       </div>
     </mat-card-content>

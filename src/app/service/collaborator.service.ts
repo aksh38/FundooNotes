@@ -27,8 +27,4 @@ export class CollaboratorService {
     return this.http.delete(this.apiUrl+"?collabId="+collab.collaboratorId, httpOptions);
   }
 
-  getCollaboratorNotes()
-  {
-    return this.http.get<Note[]>(this.apiUrl, httpOptions);
-  }
 }

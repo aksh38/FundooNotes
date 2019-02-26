@@ -9,6 +9,7 @@ import { Label } from 'src/app/model/label.model';
 import { UpdateNotesService } from 'src/app/service/update-notes.service';
 import { ViewDto } from 'src/app/model/view.model';
 import { ChangeViewService } from 'src/app/service/change-view.service';
+import { TotalNotes } from 'src/app/model/totalNoteDto.model';
 
 @Component({
   selector: 'app-notes',
@@ -43,10 +44,10 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.updateService.changeUpdate(false, false).subscribe(
-      response=>{
-        console.log(response);
-        response.forEach(note=> note.archive=false);
+      (response)=>{
+        console.log("Hello   : "+response);
       this.allNotes=response;
+      console.log("here is my notes"+this.allNotes);
       this.notesFilter();
       }
     );
