@@ -4,6 +4,8 @@ import {HttpClient} from '@angular/common/http'
 import { User } from '../model/user.model';
 import { Login } from '../model/login.model';
 import { Router } from '@angular/router';
+import { UserInfo } from '../model/userInfo.model';
+import { Observable } from 'rxjs';
 
 const httpOptions= {headers: new HttpHeaders({'Content-type':'application/json'})};
 
@@ -46,10 +48,21 @@ export class UserService {
   {
     return this.http.get<User>(this.apiUrl+userName, httpOptions);
   }
+
   resetPassword(password:String, password2:String, token:String):any
   {
       return this.http.put(this.apiUrl+"resetPassword/"+token+"/?password="+password, password,
                            {headers:new HttpHeaders().set("jwt_token",""+token), observe:'response'});
   }
 
+  collabDetails(userIds:LongRange[]):Observable<UserInfo[]>
+  {
+    return this.http.post<UserInfo[]>(this.apiUrl+"details", userIds, httpOptions);
+  }
+
+  getUserBtEmailId(emailId:string)
+  {
+    return this.http.get<LongRange>(this.apiUrl+"email/"+emailId, httpOptions);
+
+  }
 }

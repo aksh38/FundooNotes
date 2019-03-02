@@ -19,7 +19,7 @@ export class CollaboratorService {
   constructor(private http:HttpClient) { }
 
   addCollaborator(collabDto:CollaboratorDto){
-    return this.http.post<CollaboratorDto>(this.apiUrl, collabDto, httpOptions);
+    return this.http.post(this.apiUrl, collabDto, httpOptions);
   }
 
   removeCollaborator(collab:Collaborator)

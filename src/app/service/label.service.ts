@@ -4,6 +4,7 @@ import { Label } from '../model/label.model';
 import { Observable } from 'rxjs';
 import { Note } from '../model/note.model';
 import { LabelDto } from '../model/labelDto.model';
+import { AllNotes } from '../model/allNotes.model';
 
 const httpOptions = {headers: new HttpHeaders({"Content-Type":"application/json","jwt_token":localStorage.getItem("token")})} ;
 
@@ -24,9 +25,9 @@ export class LabelService {
   {
     return this.http.get<Label>(this.apiUrl+"getLabel?labelValue="+labelValue, httpOptions);
   }
-  getLabeledNotes(labelValue:String):Observable<Note[]>
+  getLabeledNotes(labelValue:String)
   {
-    return this.http.get<Note[]>(this.apiUrl+"labeledNotes/"+labelValue, httpOptions);
+    return this.http.get<AllNotes[]>(this.apiUrl+"labeledNotes/"+labelValue, httpOptions);
   }
 
   updateLabel(label:Label)

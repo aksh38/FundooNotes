@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NotesService } from './notes.service';
-import { Note } from '../model/note.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { AllNotes } from '../model/allNotes.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,13 +18,10 @@ export class UpdateNotesService {
     this.noteService.getNotes( this.archived, this.trashed).subscribe(
       response=>
       {
-        this.notes.next(response)
-      },
-      error=>
-      {
-        console.log(error);
+        this.notes.next(response);
       }
     )
+
    }
 
    changeUpdate( archived:boolean, trashed: boolean)
@@ -35,13 +32,13 @@ export class UpdateNotesService {
       this.noteService.getNotes( this.archived, this.trashed).subscribe(
       response=>
       {
-        this.notes.next(response)
+        this.notes.next(response);
       },
       error=>
       {
         console.log(error);
       }
     )
-    return this.notes.asObservable();
+    return this.currentNote;
    }
 }

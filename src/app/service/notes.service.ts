@@ -4,6 +4,7 @@ import { Note } from '../model/note.model';
 import { Observable } from 'rxjs';
 import { NoteDto } from '../model/noteDto.model';
 import { Label } from '../model/label.model';
+import { AllNotes } from '../model/allNotes.model';
 
 
 const httpOptions = 
@@ -19,9 +20,9 @@ export class NotesService {
 
   constructor(private http:HttpClient){}
 
-  getNotes(archived:boolean, trashed:boolean):Observable<Note[]>
+  getNotes(archived:boolean, trashed:boolean)
   {
-    return this.http.get<Note[]>(this.apiUrl+"?archived="+archived+"&trashed="+trashed, httpOptions);
+    return this.http.get<AllNotes[]>(this.apiUrl+"?archived="+archived+"&trashed="+trashed, httpOptions);
   }
 
   updateNote(note:Note)

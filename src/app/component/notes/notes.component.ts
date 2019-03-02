@@ -10,6 +10,7 @@ import { UpdateNotesService } from 'src/app/service/update-notes.service';
 import { ViewDto } from 'src/app/model/view.model';
 import { ChangeViewService } from 'src/app/service/change-view.service';
 import { TotalNotes } from 'src/app/model/totalNoteDto.model';
+import { AllNotes } from 'src/app/model/allNotes.model';
 
 @Component({
   selector: 'app-notes',
@@ -18,10 +19,10 @@ import { TotalNotes } from 'src/app/model/totalNoteDto.model';
 })
 export class NotesComponent implements OnInit {
 
-  private allNotes: Note[];
-  private notes: Note[];
-  private pinnedNotes: Note[];
-  private expand:boolean=false;
+  private allNotes2=new Array<AllNotes>();
+  private notes= new Array<AllNotes>();
+  private pinnedNotes= new Array<AllNotes>();
+  private expand:boolean;
   private viewDto=new ViewDto();
   private noteDto=new NoteDto();
   private labels:Label[];
@@ -38,20 +39,19 @@ export class NotesComponent implements OnInit {
       response=>
       this.change(response)
     )
-    this.getLabels();
-
+    this.getLabels(); 
+    this.updateService.changeUpdate(false, false).subscribe(
+      response=>
+      {
+      this.allNotes2=response;
+      this.notesFilter();
+      }
+    )
+    
   }
 
   ngOnInit() {
-    this.updateService.changeUpdate(false, false).subscribe(
-      (response)=>{
-        console.log("Hello   : "+response);
-      this.allNotes=response;
-      console.log("here is my notes"+this.allNotes);
-      this.notesFilter();
-      }
-    );
-   
+  
   }
 
   getLabels() {
@@ -102,7 +102,13 @@ export class NotesComponent implements OnInit {
 
   notesFilter()
   {
-    this.pinnedNotes=this.allNotes.filter(note=> note.pin===true);
-    this.notes=this.allNotes.filter(note=> note.pin===false);
+    this.pinnedNotes=[];
+    this.notes=[];
+    this.allNotes2.filter(note=> note.note.pin===true).map(note=> this.pinnedNotes.push(note));
+    this.allNotes2.filter(note=> note.note.pin===false).map(note=> this.notes.push(note));
+
+    console.log("After filter")
+    console.log(this.pinnedNotes.length);
+    console.log(this.notes)
   }
 }

@@ -27,6 +27,7 @@ import { LabelService } from './service/label.service';
 import { LabelDialogComponent } from './component/label-dialog/label-dialog.component';
 import { ChangeViewService } from './service/change-view.service';
 import { SingleNoteComponent } from './component/single-note/single-note.component';
+import { CollabDialogComponent } from './component/collab-dialog/collab-dialog.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { SingleNoteComponent } from './component/single-note/single-note.compone
     BinComponent,
     LabeledNoteComponent,
     LabelDialogComponent,
-    SingleNoteComponent   
+    SingleNoteComponent,
+    CollabDialogComponent   
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,8 @@ import { SingleNoteComponent } from './component/single-note/single-note.compone
   entryComponents:
   [
     CreateDialogComponent,
-    LabelDialogComponent
+    LabelDialogComponent,
+    CollabDialogComponent
   ],
   providers: [
     UserService,

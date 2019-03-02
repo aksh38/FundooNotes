@@ -16,7 +16,15 @@ input
     border: 0px;
     font-family:sans-serif;
 }
-
+.icon {
+  color: grey;
+  border-width: 1px;
+  border-style: solid;
+  border-color:grey;
+  border-radius: 50% 50% 50% 50%; 
+  margin:4px;
+  zoom: 0.5;
+}
 
 .noteCardList {
     display: flex;

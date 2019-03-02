@@ -1,16 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NotesService } from 'src/app/service/notes.service';
 import { Note } from 'src/app/model/note.model';
-import { MatSnackBar, MatDialog } from '@angular/material';
-import { CreateDialogComponent } from '../create-dialog/create-dialog.component';
-import { NoteDto } from 'src/app/model/noteDto.model';
-import { Router } from '@angular/router';
-import { LabelService } from 'src/app/service/label.service';
-import { Label } from 'src/app/model/label.model';
-import { LabelDto } from 'src/app/model/labelDto.model';
 import { UpdateNotesService } from 'src/app/service/update-notes.service';
 import { ChangeViewService } from 'src/app/service/change-view.service';
 import { ViewDto } from 'src/app/model/view.model';
+import { AllNotes } from 'src/app/model/allNotes.model';
 
 @Component({
   selector: 'app-archive-notes',
@@ -19,27 +13,25 @@ import { ViewDto } from 'src/app/model/view.model';
 })
 export class ArchiveNotesComponent implements OnInit {
 
-  private archivedNotes:Note[];
+  private archivedNotes=new Array<AllNotes>();
   private viewDto:ViewDto=new ViewDto();
+  private allNotes= new Array<AllNotes>();
   constructor(
     private updateService:UpdateNotesService,
     private changeView:ChangeViewService
-    ) {
-      this.updateService.changeUpdate(true, false).subscribe(
-        response=>{
-          console.log(response);
-          response.forEach(note=> note.archive=true);
-        this.archivedNotes=response;
-        }
-      );
-
-      this.changeView.currentView.subscribe(
-        response=>
-        this.change(response)
-      )
-  }
+    ) {}
 
   ngOnInit() {
+    this.updateService.changeUpdate(true, false).subscribe(
+      (response)=>{
+        this.archivedNotes=response;
+      }
+    );
+
+    this.changeView.currentView.subscribe(
+      response=>
+      this.change(response)
+    );
   }
 
   change(flag:boolean)

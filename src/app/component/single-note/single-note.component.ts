@@ -11,6 +11,10 @@ import { ViewDto } from 'src/app/model/view.model';
 import { LabelDto } from 'src/app/model/labelDto.model';
 import { UpdateNotesService } from 'src/app/service/update-notes.service';
 import { ChangeViewService } from 'src/app/service/change-view.service';
+import { AllNotes } from 'src/app/model/allNotes.model';
+import { CollabDialogComponent } from '../collab-dialog/collab-dialog.component';
+import { UserInfo } from 'src/app/model/userInfo.model';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-single-note',
@@ -20,15 +24,14 @@ import { ChangeViewService } from 'src/app/service/change-view.service';
 })
 export class SingleNoteComponent implements OnInit {
 
-  @Input() private myNote:Note=new Note();
+  @Input() private myNote:AllNotes=new AllNotes();
   private noteDto: NoteDto = new NoteDto;
   private expand: boolean = false;
   private labels: Label[];
   private show: boolean = false;
   private viewDto = new ViewDto();
-  private notes:Note[];
-  private pinnedNotes:Note[];
   private view:string;
+  private userInfos:UserInfo[];
   private colorsPallete: string[][] = [['white', 'lightblue', 'lightcoral', 'lightgray'],
   ['lightgreen', 'lightpink', 'lightsalmon', 'lightyellow'],
   ['lightcyan', 'lightskyblue', 'lightseagreen', 'tan']];
@@ -40,23 +43,25 @@ export class SingleNoteComponent implements OnInit {
     private noteService:NotesService,
     private labelService:LabelService,
     private updateService:UpdateNotesService,
+    private userService:UserService,
     private snackBar:MatSnackBar,
     private dialog:MatDialog,
     private router:Router
   ) { 
-    this.getLabels();
-  }
+      }
 
   ngOnInit() {
-    
+   
+    this.getLabels();   
   }
 
   pinIt(note: Note) {
     note.archive=false;
     this.noteService.pinNote(note).subscribe((response: any) => {
       this.snackBar.open(response.statusMessage, "", { duration: 2000, verticalPosition: "top" });
+      this.updateService.changeUpdate(false, false);
     });
-    this.updateService.changeUpdate(false, false);
+   
   }
   openCreateDialog(note: Note): void {
     const dialogRef = this.dialog.open(CreateDialogComponent, {
@@ -99,14 +104,8 @@ export class SingleNoteComponent implements OnInit {
   changeColor2(color: string, note: Note) {
     note.color = color;
     this.noteService.updateNote(note).subscribe((response: any) => {
-      if (response.statusCode == 200) {
-        this.snackBar.open(response.statusMessage, "", { duration: 2000, verticalPosition: "top" });
-        this.updateService.changeUpdate(false, false);
-      }
-      else {
-        this.snackBar.open(response.statusMessage, "", { duration: 2000, verticalPosition: "top" });
-        this.updateService.changeUpdate(false, false);
-      }
+      this.snackBar.open(response.statusMessage, "", { duration: 2000, verticalPosition: "top" });
+      this.updateService.changeUpdate(false, false);
     });
   }
 
@@ -114,8 +113,8 @@ export class SingleNoteComponent implements OnInit {
     note.pin = false;
     this.noteService.archiveNote(note).subscribe((response: any) => {
       this.snackBar.open(response.statusMessage, "", { duration: 2000, verticalPosition: "top" });
+      this.updateService.changeUpdate(false, false);
     });
-    this.updateService.changeUpdate(false, false);
   }
 
   unArchiveNote(note: Note) {
@@ -203,4 +202,16 @@ export class SingleNoteComponent implements OnInit {
       this.viewDto.viewClass="noteGrid";
     }
   }
+
+  openCollabDialog(note:AllNotes)
+  {
+    const dialogRef = this.dialog.open(CollabDialogComponent, {
+      width: '600px',
+      data:note
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.updateService.changeUpdate(false,false);
+    }); 
+  }
+
 }

@@ -33,7 +33,7 @@ export class CreateDialogComponent implements OnInit {
         this.snackBar.open(response.statusMessage, "", {duration:2000, verticalPosition:"top"});
     });
     this.dialogRef.close();
-} 
+  } 
   changeColor(color:string)
   {
     this.myColor=color;

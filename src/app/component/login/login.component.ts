@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
         console.log(response.headers.get("jwt_token"));
         localStorage.setItem("token", response.headers.get("jwt_token"));
         console.log(localStorage.getItem("token"));
+        localStorage.setItem("userName", this.loginmodel.userName);
         this.router.navigateByUrl("home");
       }
       else

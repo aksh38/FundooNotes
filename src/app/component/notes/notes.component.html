@@ -61,20 +61,21 @@
 
 
 <div>
+<div fxLayout="column" fxLayoutAlign="right right">
 <span style="margin-top:30px;font-size: 10px;"  *ngIf="pinnedNotes ? pinnedNotes.length>0: false ">PINNED</span>
-<div fxLayout="row" fxLayoutAlign="right right">
-  <div fxLayout={{viewDto.viewStyle}} fxLayoutGap="25px" fxLayoutAlign="flex-start" fxLayoutAlign.xs="center center">
+  <div fxLayout={{viewDto.viewStyle}} fxLayoutGap="25px" fxLayout="row" fxLayoutAlign="flex-start" fxLayoutAlign.xs="center center">
     <ng-container *ngFor="let note of pinnedNotes" >
-      <app-single-note [myNote]=note>
+      <app-single-note *ngIf="note.note.pin"[myNote]=note>
           </app-single-note>
     </ng-container>   
   </div>
 </div> 
-<span style="margin-top:40px;font-size: 10px;" *ngIf="pinnedNotes ? pinnedNotes.length>0: false ">OTHERS</span>
-  <div fxLayout="row" fxLayoutAlign="right right" style="margin-top: 20px;">
-    <div fxLayout={{viewDto.viewStyle}} fxLayoutGap="25px" fxLayoutAlign="flex-start" fxLayoutAlign.xs="center center">
+
+<div fxLayout="column" fxLayoutAlign="right right" style="margin-top: 20px;">
+<span style="margin-top:10px;font-size: 10px;" *ngIf="pinnedNotes ? pinnedNotes.length>0: false ">OTHERS</span>
+    <div fxLayout={{viewDto.viewStyle}} fxLayout="row" fxLayoutGap="25px" fxLayoutAlign="flex-start" fxLayoutAlign.xs="center center">
         <ng-container *ngFor="let note of notes" >
-          <app-single-note [myNote]=note>
+          <app-single-note  *ngIf="!note.note.pin" [myNote]=note>
               </app-single-note>
         </ng-container>   
       </div>

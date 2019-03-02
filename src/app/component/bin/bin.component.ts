@@ -4,6 +4,7 @@ import { NotesService } from 'src/app/service/notes.service';
 import { MatSnackBar } from '@angular/material';
 import { ViewDto } from 'src/app/model/view.model';
 import { ChangeViewService } from 'src/app/service/change-view.service';
+import { AllNotes } from 'src/app/model/allNotes.model';
 
 @Component({
   selector: 'app-bin',
@@ -32,8 +33,8 @@ export class BinComponent implements OnInit {
   getTrashNotes()
   {
     this.noteService.getNotes(false, true).subscribe(
-      (data)=> {
-        this.trashedNotes=data;
+      (data:AllNotes[])=> {
+        data.filter(note=> this.trashedNotes.push(note.note));
       }
     )
   }
