@@ -21,6 +21,11 @@ export class CollabDialogComponent implements OnInit {
   private emailId:string;
   private show:boolean;
   private userId:LongRange;
+  private userId2:LongRange;
+  private collab=new AllNotes();
+  private userInfoList= new Array<UserInfo>();
+
+
   private userIds=new Array<LongRange>();
   constructor( 
     public dialogRef: MatDialogRef<CollabDialogComponent>,
@@ -67,7 +72,7 @@ export class CollabDialogComponent implements OnInit {
       this.collabService.addCollaborator(collab).subscribe(
         (response:any)=> {
         if(response.statusCode==200){
-        this.snackBar.open(response.statusMessage,"",{duration:3000})
+        this.snackBar.open(response.statusMessage,"",{duration:3000});
       }
       else{
         this.snackBar.open("Enter valid email","",{duration:3000})
@@ -77,11 +82,19 @@ export class CollabDialogComponent implements OnInit {
       ) 
   }
   
-  removeCollab(userInfo:UserInfo)
+  removeCollab(emailId:string)
   {
-    this.userService.getUserBtEmailId(userInfo.emailId).subscribe(
-      (data)=>
-      this.userId=data
-    )
+    this.userInfoList.push(this.userInfos.filter(userInfo=> userInfo.emailId==emailId).pop());
+    this.userInfos=this.userInfos.filter(userInfo=> userInfo.emailId!==emailId);
+  }
+
+  save(){
+    let thisNote=new AllNotes();
+    thisNote.note=this.data.note;
+    thisNote.collabUserInfos=this.userInfoList;
+    this.collabService.removeCollaborator(thisNote).subscribe(
+      (response:any)=> 
+      this.snackBar.open("Collaborator saved", "", {duration: 3000})
+    );
   }
 }

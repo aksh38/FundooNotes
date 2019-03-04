@@ -1,0 +1,17 @@
+.tabStyle
+{
+    margin-left:20px;
+    margin-top:5px;
+    font-family: sans-serif; 
+    font-size: 13px;
+    font-weight: bold;
+}
+.filepicker{
+    -webkit-appearance: none;
+    position:absolute;
+    text-indent: 100em;
+    background-size: cover;
+    overflow: hidden;
+    cursor: pointer;
+    outline: none;
+}

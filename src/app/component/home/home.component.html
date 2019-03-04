@@ -20,14 +20,16 @@
 
     <button mat-icon-button class="profileButton" [matMenuTriggerFor]="profileMenu" >{{userName[0]}}</button>
 
-    <mat-menu #profileMenu="matMenu" >
-      <div  fxLayout="row" style="width:325px" matMenuItem>
-             <button mat-icon-button class="profileButton" style="width: 80px; height: 80px; font-size: 50px" >{{userName[0]}}</button>
-            <div fxLayout="column" fxLayoutAlign="left left">
-            <span>{{userName}}</span>
-            <span>{{email}}</span>
-            <button mat-button style="background-color: royalblue; margin-top: 25px">Log Out</button>
-          </div>
+    <mat-menu #profileMenu="matMenu" class="custom" >
+      <div  fxLayout="row" style="overflow: hidden;width:100%" matMenuItem>        
+        <div>
+          <button mat-icon-button (click)="openImageDialog()" class="profileButton" style="zoom:2;margin:5px" >{{userName[0]}}</button>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="left left" style="padding-right: 20px">
+          <span class="usernameStyle">{{userName}}</span>
+          <span class="emailStyle">{{email}}</span>
+          <button mat-button style="background-color: royalblue; margin-top: 25px">Log Out</button>
+        </div>
     </div>
     </mat-menu>
   </div>

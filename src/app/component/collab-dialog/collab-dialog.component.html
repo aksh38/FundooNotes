@@ -28,7 +28,7 @@
                   {{userInfo.emailId}}
             </span>
           </div>
-          <button mat-icon-button class="btnCollab"><mat-icon>close</mat-icon></button>
+          <button mat-icon-button class="btnCollab" (click)="removeCollab(userInfo.emailId)"><mat-icon>close</mat-icon></button>
         </span>
       </div>
     
@@ -41,6 +41,6 @@
   </div>
   <div mat-dialog-actions class="actionDialog">
     <button mat-raised-button class="actionButton">Cancle</button>
-    <button mat-raised-button class="actionButton">Save</button>
+    <button mat-raised-button class="actionButton" (click)="save()">Save</button>
   </div>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons">

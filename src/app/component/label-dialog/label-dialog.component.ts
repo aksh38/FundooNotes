@@ -58,6 +58,7 @@ onClick(): void {
 
 deleteLabel(labelId:LongRange)
 {
+  this.labels=this.labels.filter(label=> label.labelId!== labelId);
   this.labelService.deleteLabel(labelId).subscribe(
     (response:any)=>{
       this.getLabels();

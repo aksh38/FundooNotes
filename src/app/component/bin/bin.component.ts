@@ -13,7 +13,7 @@ import { AllNotes } from 'src/app/model/allNotes.model';
 })
 export class BinComponent implements OnInit {
 
-  private trashedNotes:Note[];
+  private trashedNotes=new Array<AllNotes>();
   private viewDto:ViewDto=new ViewDto();
   constructor(
     private noteService:NotesService, 
@@ -34,7 +34,7 @@ export class BinComponent implements OnInit {
   {
     this.noteService.getNotes(false, true).subscribe(
       (data:AllNotes[])=> {
-        data.filter(note=> this.trashedNotes.push(note.note));
+        data.filter(note=> this.trashedNotes.push(note));
       }
     )
   }

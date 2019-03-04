@@ -1,0 +1,44 @@
+<div mat-dialog-title>
+  <span>Select Profile Photo</span>
+</div>
+
+<div mat-dialog-content style="margin-top:-20px">
+  <mat-tab-group style="zoom:0.9;">
+
+    <mat-tab class="tabStyle" label="UploadPhotos" >
+      <div fxLayout="column" fxLayoutAlign="center center" style="margin-top:80px; margin-bottom: 50px">
+        <span>
+          <mat-icon style="zoom:5; color: rgba(161, 161, 161, 0.952)">add_photo_alternate</mat-icon>
+        </span>
+        <span style="zoom:2; font-family: sans-serif; color: rgba(161, 161, 161, 0.952)">
+          Click here 
+        </span>
+        <span style=" color: rgba(161, 161, 161, 0.952)">
+          -or-
+        </span>
+        <span>
+            <input hidden type="file" #filePicker/>
+          <button mat-raised-button  style="background-color: rgba(218, 218, 218, 0.925)">
+            <span style="font-family: sans-serif;font-weight: bold; font-size: 12px">Select a photo from your computer</span>
+          </button>
+        </span>
+      </div>
+    </mat-tab>
+
+    <mat-tab class="tabStyle" label="YourPhotos">
+    </mat-tab>
+
+    <mat-tab class="tabStyle" label="PhotosOfYou">
+    </mat-tab>
+
+  </mat-tab-group>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions>
+  <div>
+    <button mat-raised-button style="background-color:#4d90fe; color: white; font-family: sans-serif; zoom: 0.8;font-weight: bold">Set as profile photo</button>
+  </div>
+  <div>
+    <button mat-raised-button style="font-family: sans-serif; zoom: 0.8;font-weight: bold; margin-left: 10px">Cancle</button>
+  </div>
+</div>

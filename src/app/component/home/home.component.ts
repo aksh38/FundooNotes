@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { LabelDialogComponent } from '../label-dialog/label-dialog.component';
 import { MatDialog } from '@angular/material';
 import { ChangeViewService } from 'src/app/service/change-view.service';
+import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -48,6 +49,17 @@ export class HomeComponent implements OnInit {
   {
     const dialogRef = this.dialog.open(LabelDialogComponent, {
       width: '320px',
+      data: this.labels
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.getLabels();
+          });
+  }
+
+  openImageDialog():void
+  {
+    const dialogRef = this.dialog.open(ImageDialogComponent, {
+      width: '800px',
       data: this.labels
     });
     dialogRef.afterClosed().subscribe(result => {
