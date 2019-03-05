@@ -20,14 +20,14 @@
         </span>
       </mat-card-header>
           
-    <mat-card-content fxLayout="column" style="margin-bottom: 40px" >
-      <div (click)="openCreateDialog(myNote.note)">
+    <mat-card-content fxLayout="column" style="margin-bottom: 40px;" >
+      <div (click)="openCreateDialog(myNote.note)" style="margin-bottom: 10px;padding-left: 15px">
         <span>
           {{myNote.note.description}}
         </span>
       </div>
       
-      <div fxLayout="row wrap">
+      <div fxLayout="row wrap" style=" margin:10px">
         <mat-chip-list #chipList>
           <div  *ngFor="let label of myNote.note.labels">
             <mat-chip class="noteLabels" routerLink="../labels/{{label.labelValue}}">{{label.labelValue}}
@@ -37,11 +37,11 @@
             </mat-chip>
           </div>
         </mat-chip-list>
+      </div>
+      <div fxLayout="row wrap">
         <div *ngFor="let userInfo of myNote.collabUserInfos" >
-          <button mat-icon-button class="icon" matTooltip="{{userInfo.userName}}<{{userInfo.emailId}}>">
-            <mat-icon>
-                person_outline
-            </mat-icon>
+          <button mat-icon-button class="icon" class="profileButton" matTooltip="{{userInfo.userName}}<{{userInfo.emailId}}>">
+            <span> {{userInfo.emailId[0]}}</span>
           </button>
         </div>
       </div>

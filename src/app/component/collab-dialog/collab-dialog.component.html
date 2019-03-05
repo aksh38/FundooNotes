@@ -40,7 +40,7 @@
 
   </div>
   <div mat-dialog-actions class="actionDialog">
-    <button mat-raised-button class="actionButton">Cancle</button>
-    <button mat-raised-button class="actionButton" (click)="save()">Save</button>
+    <button mat-raised-button class="actionButton" (click)="cancel" [mat-dialog-close]>Cancel</button>
+    <button mat-raised-button class="actionButton" (click)="save()" [mat-dialog-close]>Save</button>
   </div>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons">

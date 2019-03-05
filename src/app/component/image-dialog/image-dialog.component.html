@@ -5,8 +5,8 @@
 <div mat-dialog-content style="margin-top:-20px">
   <mat-tab-group style="zoom:0.9;">
 
-    <mat-tab class="tabStyle" label="UploadPhotos" >
-      <div fxLayout="column" fxLayoutAlign="center center" style="margin-top:80px; margin-bottom: 50px">
+    <mat-tab class="tabStyle" label="UploadPhotos"  >
+      <div fxLayout="column" *ngIf="imageChangedEvent===''" (click)="photoInput.click()"  fxLayoutAlign="center center" style="margin-top:80px; margin-bottom: 50px">
         <span>
           <mat-icon style="zoom:5; color: rgba(161, 161, 161, 0.952)">add_photo_alternate</mat-icon>
         </span>
@@ -17,11 +17,23 @@
           -or-
         </span>
         <span>
-            <input hidden type="file" #filePicker/>
+          <input type="file" style="display:none;" #photoInput accept="image/*" (change)="onFileSelect($event)">
           <button mat-raised-button  style="background-color: rgba(218, 218, 218, 0.925)">
             <span style="font-family: sans-serif;font-weight: bold; font-size: 12px">Select a photo from your computer</span>
           </button>
         </span>
+      </div>
+      <div style="height:400px">
+          <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="2 / 2"
+            [resizeToWidth]="64"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+            (imageLoaded)="imageLoaded()"
+            (loadImageFailed)="loadImageFailed()"
+          ></image-cropper>
       </div>
     </mat-tab>
 

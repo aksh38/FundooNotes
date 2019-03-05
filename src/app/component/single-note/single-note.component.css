@@ -23,7 +23,8 @@ input
   border-color:grey;
   border-radius: 50% 50% 50% 50%; 
   margin:4px;
-  zoom: 0.5;
+  width:30px;
+  height: 30px;
 }
 
 .noteCardList {
@@ -143,3 +144,16 @@ textarea
   display: inline-block;
 }
 
+.profileButton{
+
+  color: white;
+  font-size: 15px;
+  border-width: 1px;
+  border-style: solid;
+  background-color: rgba(184, 179, 179, 0.842);
+  border-color:rgb(255, 255, 255);
+  border-radius: 50% 50% 50% 50%; 
+  width:35px;
+  height: 35px;
+  margin:4px;
+}

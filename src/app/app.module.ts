@@ -29,7 +29,7 @@ import { ChangeViewService } from './service/change-view.service';
 import { SingleNoteComponent } from './component/single-note/single-note.component';
 import { CollabDialogComponent } from './component/collab-dialog/collab-dialog.component';
 import { ImageDialogComponent } from './component/image-dialog/image-dialog.component';
-
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,8 @@ import { ImageDialogComponent } from './component/image-dialog/image-dialog.comp
     MaterialModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    NgMatSearchBarModule
+    NgMatSearchBarModule,
+    ImageCropperModule
   ],
   entryComponents:
   [
