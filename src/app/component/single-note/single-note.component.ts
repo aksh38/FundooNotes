@@ -15,6 +15,7 @@ import { AllNotes } from 'src/app/model/allNotes.model';
 import { CollabDialogComponent } from '../collab-dialog/collab-dialog.component';
 import { UserInfo } from 'src/app/model/userInfo.model';
 import { UserService } from 'src/app/service/user.service';
+import { ReminderTimeSelect } from 'src/app/model/reminderTime.model';
 
 @Component({
   selector: 'app-single-note',
@@ -28,17 +29,29 @@ export class SingleNoteComponent implements OnInit {
   private noteDto: NoteDto = new NoteDto;
   private expand: boolean = false;
   private labels: Label[];
+  private currentTime:Date=new Date();
   private show: boolean = false;
+  private show2: boolean = false;
+  private display:boolean=false;
+  private currentDate=new Date();
   private viewDto = new ViewDto();
   private view:string;
   private userInfos:UserInfo[];
-  private colorsPallete: string[][] = [['white', 'lightblue', 'lightcoral', 'lightgray'],
+  private colorsPallete: string[][] = 
+  [['white', 'lightblue', 'lightcoral', 'lightgray'],
   ['lightgreen', 'lightpink', 'lightsalmon', 'lightyellow'],
   ['lightcyan', 'lightskyblue', 'lightseagreen', 'tan']];
   
+  private timings:  ReminderTimeSelect[]= [
+    {value: '08:00', viewValue: 'Morning'},
+    {value: '13:00', viewValue: 'Afternoon'},
+    {value: '18:00', viewValue: 'Evening'},
+    {value: '20:00', viewValue: 'Night'}
+  ];
+
   private myColor: string = 'white';
   private searchLabelValue: string;
-
+  private selectDisabled:boolean=false;
   constructor(
     private noteService:NotesService,
     private labelService:LabelService,
@@ -48,7 +61,12 @@ export class SingleNoteComponent implements OnInit {
     private dialog:MatDialog,
     private router:Router
   ) { 
-      }
+      setInterval(()=>{
+        this.currentTime=new Date()
+      },1)
+    }
+      
+        
 
   ngOnInit() {
    
@@ -63,6 +81,9 @@ export class SingleNoteComponent implements OnInit {
     });
    
   }
+  setTime(value:string)
+  {
+  }
   openCreateDialog(note: Note): void {
     const dialogRef = this.dialog.open(CreateDialogComponent, {
       width: '600px',
@@ -76,7 +97,14 @@ export class SingleNoteComponent implements OnInit {
   expandCreateBar() {
     this.expand = true;
   }
+  focusInput(myInput) {
 
+    myInput.focus();
+}
+  displaySelect()
+  {
+    this.display=!this.display;
+  }
   closeCreateBar() {
     if (this.noteDto.title !== undefined) {
       this.noteService.createNote(this.noteDto)
@@ -212,6 +240,17 @@ export class SingleNoteComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.updateService.changeUpdate(false,false);
     }); 
+  }
+
+  setMenu(show:boolean, event)
+  {
+    this.show2=show;
+    this.stopPropagation(event);
+  }
+
+  setSelect()
+  {
+    this.selectDisabled=!this.selectDisabled;
   }
 
 }

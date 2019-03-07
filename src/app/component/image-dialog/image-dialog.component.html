@@ -31,8 +31,6 @@
             [resizeToWidth]="64"
             format="png"
             (imageCropped)="imageCropped($event)"
-            (imageLoaded)="imageLoaded()"
-            (loadImageFailed)="loadImageFailed()"
           ></image-cropper>
       </div>
     </mat-tab>
@@ -48,7 +46,7 @@
 <mat-divider></mat-divider>
 <div mat-dialog-actions>
   <div>
-    <button mat-raised-button style="background-color:#4d90fe; color: white; font-family: sans-serif; zoom: 0.8;font-weight: bold">Set as profile photo</button>
+    <button mat-raised-button style="background-color:#4d90fe; color: white; font-family: sans-serif; zoom: 0.8;font-weight: bold" (click)="upload()">Set as profile photo</button>
   </div>
   <div>
     <button mat-raised-button style="font-family: sans-serif; zoom: 0.8;font-weight: bold; margin-left: 10px">Cancle</button>

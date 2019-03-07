@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { ImageService } from 'src/app/service/image.service';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-image-dialog',
@@ -8,23 +10,24 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 })
 export class ImageDialogComponent implements OnInit {
   private imageChangedEvent: any ='';
-  private croppedImage: any = '';
+  private croppedImage:File;
   
-  constructor() { }
+  constructor( 
+    public dialogRef: MatDialogRef<ImageDialogComponent>,
+    private imageService:ImageService) { }
 
   ngOnInit() {
   }
 
-  onFileSelect(event: any): void {
+  onFileSelect(event): void {
+    console.log(event)
     this.imageChangedEvent = event;
   }
-  imageCropped(event: ImageCroppedEvent) {
+  imageCropped(event) {
     this.croppedImage = event.base64;
   }
-  imageLoaded() {
-    
-  }
-  loadImageFailed() {
-    // show message 
+  upload()
+  {
+    this.dialogRef.close(this.croppedImage);
   }
 }

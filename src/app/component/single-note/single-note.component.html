@@ -48,9 +48,105 @@
     </mat-card-content>
       <div class="buttons" style="position: absolute; margin-top:-30px">
       <mat-card-footer style="margin-bottom:10px">        
-        <button mat-icon-button>
+        <button mat-icon-button [matMenuTriggerFor]="reminderMenu">
           <mat-icon>add_alert</mat-icon>
         </button>
+        
+        <mat-menu #reminderMenu="matMenu" class="reminderMenu">
+          <ng-container *ngIf="!show2">
+          <div matMenuItem (click)="stopPropagation($event)">
+           <span class="reminderText3">Reminder:</span> 
+          </div>
+          <div matMenuItem (click)="stopPropagation($event)">
+            <button mat-raised-button class="reminderButton">
+              <span class="reminderText">Later Today</span>
+              <span class="reminderText2">20:00</span>
+            </button>
+          </div>
+          <div matMenuItem (click)="stopPropagation($event)">
+            <button mat-raised-button class="reminderButton">
+              <span class="reminderText">Tomorrow</span>
+              <span class="reminderText2">08:00</span>
+            </button>
+          </div>
+          <div matMenuItem (click)="stopPropagation($event)">
+            <button mat-raised-button class="reminderButton">
+              <span class="reminderText">Next Week</span>
+              <span class="reminderText2">Mon, 08:00</span>
+            </button>
+          </div>
+          <div matMenuItem (click)="stopPropagation($event)">
+            <button mat-raised-button class="reminderButton" >
+              <div fxLayout="row" fxLayoutAlign="center center" style="float: left;" (click)="stopPropagation($event)"> 
+              <mat-icon style="zoom:0.7;">schedule</mat-icon>
+              <span class="reminderText" (click)="setMenu(true, $event)">Select date and time</span>
+            </div>
+            </button>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="show2">
+            <div matMenuItem (click)="stopPropagation($event)">
+              <button mat-icon-button (click)="setMenu(false, $event)">
+                <mat-icon>arrow_back</mat-icon>
+              </button>
+              <span class="reminderText3">Select date and time</span> 
+            </div>
+            <mat-divider></mat-divider>
+            <div matMenuItem fxLayout="row" style="padding-left: 20px" (click)="stopPropagation($event)">
+              <span>
+                <input matInput [matDatepicker]="picker" style="font-family: sans-serif; font-size: 90%; width: 100%" [value] ="currentDate | date:'yyyy-MM-dd'" >
+              </span>
+              <span>
+                <mat-datepicker-toggle matSuffix [for]="picker" >
+                  <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </span>
+            </div>
+            <div matMenuItem fxLayout="row"  style="padding-left: 20px" (click)="stopPropagation($event)">
+              <span>
+                <input matInput [value]="currentTime| date:'HH:mm'">
+              </span>
+              <span>
+                <mat-select>
+                  <mat-option *ngFor="let time of timings" [value]="time.value">
+                    <span class="reminderText">{{time.viewValue}}</span>
+                    <span class="reminderText2">{{time.value}}</span>
+                  </mat-option>
+                </mat-select>
+              </span>
+            <mat-divider></mat-divider>
+            </div>
+                
+            <div matMenuItem style="padding-left: 20px;" (click)="stopPropagation($event)">
+              <mat-form-field class="timeSelect">
+                <mat-select style="overflow: hidden;">
+                  <mat-option >
+                    <span class="reminderText">Doesn't Repeat</span>
+                  </mat-option>
+                  <mat-option >
+                    <span class="reminderText">Daily</span>
+                  </mat-option>
+                  <mat-option >
+                    <span class="reminderText">Weekly</span>
+                  </mat-option>
+                  <mat-option >
+                    <span class="reminderText">Monthly</span>
+                  </mat-option>
+                  <mat-option >
+                    <span class="reminderText">Customize</span>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+            <div matMenuItem  fxLayoutAlign="right center">
+              <button mat-raised-button class="doneReminder">Done</button>              
+            </div>
+          </ng-container>
+        </mat-menu>
+
         
         <button mat-icon-button (click)="openCollabDialog(myNote)">
           <mat-icon>person_add</mat-icon>
@@ -66,7 +162,6 @@
               </span>
             </div>
           </mat-menu>
-              
         <button mat-icon-button>
           <mat-icon>add_photo_alternate</mat-icon>
         </button>
@@ -113,7 +208,6 @@
                     </button>
                   </div>
                 </mat-menu>
-                
                 <button mat-menu-item>Make a copy</button>
               </mat-menu>
         </mat-card-footer>

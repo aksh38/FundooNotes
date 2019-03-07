@@ -30,6 +30,10 @@ import { SingleNoteComponent } from './component/single-note/single-note.compone
 import { CollabDialogComponent } from './component/collab-dialog/collab-dialog.component';
 import { ImageDialogComponent } from './component/image-dialog/image-dialog.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImageService } from './service/image.service';
+import { UpdateNotesService } from './service/update-notes.service';
+import { CollaboratorService } from './service/collaborator.service';
+import { ReminderDialogComponent } from './component/reminder-dialog/reminder-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     LabelDialogComponent,
     SingleNoteComponent,
     CollabDialogComponent,
-    ImageDialogComponent   
+    ImageDialogComponent,
+    ReminderDialogComponent   
   ],
   imports: [
     BrowserModule,
@@ -73,7 +78,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     UserService,
     NotesService,
     LabelService,
-    ChangeViewService
+    ChangeViewService,
+    ImageService,
+    UpdateNotesService,
+    CollaboratorService
   ],
   bootstrap: [AppComponent]
 })
