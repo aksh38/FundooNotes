@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
               private imageService:ImageService, 
               private router:Router,
               private dialog:MatDialog,
-              private changeViewService:ChangeViewService) { 
+              private changeViewService:ChangeViewService,){
     this.getLabels();
      this.userName=localStorage.getItem("userName");
      this.userService.getUser(this.userName).subscribe((result)=>{
@@ -74,5 +74,11 @@ export class HomeComponent implements OnInit {
   {
     this.show=!show;
     this.changeViewService.changeView();
+  }
+
+  logout()
+  {
+    localStorage.clear();
+    this.router.navigateByUrl("login");
   }
 }

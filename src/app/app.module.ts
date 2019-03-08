@@ -34,6 +34,7 @@ import { ImageService } from './service/image.service';
 import { UpdateNotesService } from './service/update-notes.service';
 import { CollaboratorService } from './service/collaborator.service';
 import { ReminderDialogComponent } from './component/reminder-dialog/reminder-dialog.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { ReminderDialogComponent } from './component/reminder-dialog/reminder-di
     ChangeViewService,
     ImageService,
     UpdateNotesService,
-    CollaboratorService
+    CollaboratorService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

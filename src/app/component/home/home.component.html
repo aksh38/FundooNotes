@@ -28,7 +28,7 @@
         <div fxLayout="column" fxLayoutAlign="left left" style="padding-right: 20px">
           <span class="usernameStyle">{{userName}}</span>
           <span class="emailStyle">{{email}}</span>
-          <button mat-button style="background-color: royalblue; margin-top: 25px">Log Out</button>
+          <button mat-button (click)="logout()" style="background-color: royalblue; margin-top: 25px">Log Out</button>
         </div>
     </div>
     </mat-menu>

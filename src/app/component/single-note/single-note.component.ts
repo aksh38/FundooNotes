@@ -16,6 +16,7 @@ import { CollabDialogComponent } from '../collab-dialog/collab-dialog.component'
 import { UserInfo } from 'src/app/model/userInfo.model';
 import { UserService } from 'src/app/service/user.service';
 import { ReminderTimeSelect } from 'src/app/model/reminderTime.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-single-note',
@@ -42,13 +43,13 @@ export class SingleNoteComponent implements OnInit {
   ['lightgreen', 'lightpink', 'lightsalmon', 'lightyellow'],
   ['lightcyan', 'lightskyblue', 'lightseagreen', 'tan']];
   
-  private timings:  ReminderTimeSelect[]= [
-    {value: '08:00', viewValue: 'Morning'},
-    {value: '13:00', viewValue: 'Afternoon'},
-    {value: '18:00', viewValue: 'Evening'},
-    {value: '20:00', viewValue: 'Night'}
+  private timings:  string[]= [
+    "Doesn't repeat",
+    "Daily",
+    "Weekly",
+    "Monthly",
+    "Yearly",
   ];
-
   private myColor: string = 'white';
   private searchLabelValue: string;
   private selectDisabled:boolean=false;
@@ -59,14 +60,10 @@ export class SingleNoteComponent implements OnInit {
     private userService:UserService,
     private snackBar:MatSnackBar,
     private dialog:MatDialog,
-    private router:Router
+    private router:Router,
+    private datePipe:DatePipe
   ) { 
-      setInterval(()=>{
-        this.currentTime=new Date()
-      },1)
     }
-      
-        
 
   ngOnInit() {
    
@@ -80,9 +77,6 @@ export class SingleNoteComponent implements OnInit {
       this.updateService.changeUpdate(false, false);
     });
    
-  }
-  setTime(value:string)
-  {
   }
   openCreateDialog(note: Note): void {
     const dialogRef = this.dialog.open(CreateDialogComponent, {
@@ -168,6 +162,10 @@ export class SingleNoteComponent implements OnInit {
     event.stopPropagation();
   }
 
+  setTimeDate(value:string)
+  {
+    document.getElementById("time").nodeValue = value;
+  }
   onSearchChange(searchValue: string) {
     if (!searchValue) {
       this.show = false;
@@ -253,4 +251,24 @@ export class SingleNoteComponent implements OnInit {
     this.selectDisabled=!this.selectDisabled;
   }
 
+  setReminder(date:string, time:number, repeat:string, note:Note)
+  {
+    date=this.datePipe.transform(date,'yyyy-MM-dd');
+    note.reminder=new Date(date+"T"+time);
+    this.noteService.updateNote(note).subscribe(
+      (response:any)=>{
+        this.snackBar.open(response.statusMessage, "", {duration:5000});
+      }
+    )
+  }
+
+  removeReminder(note:Note)
+  {
+    note.reminder=null;
+    this.noteService.updateNote(note).subscribe(
+      (response:any)=>{
+        this.snackBar.open(response.statusMessage, "", {duration:5000});
+      }
+    )
+  }
 }

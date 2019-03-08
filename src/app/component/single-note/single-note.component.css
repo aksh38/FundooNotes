@@ -72,6 +72,16 @@ button:focus
 {
   outline: 0;
 }
+input[type="time"]::-webkit-clear-button {
+  display: none;
+}
+input[type=time]::-webkit-inner-spin-button, 
+input[type=time]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
 input:focus{
   outline: 0;
 }
@@ -92,6 +102,10 @@ textarea
 textarea:focus
 {
     outline: 0;
+}
+.field{
+  padding-left: 20px; 
+  margin-top: 5%;
 }
 textarea
 {
@@ -140,6 +154,21 @@ textarea
   width: 30px;
   height: 30px;
   margin-left: -20px;
+  background-color: rgba(151, 147, 147, 0.753);
+  display: inline-block;
+}
+
+.scheduleIcon
+{
+  margin-right: -10px;
+  display: none;
+}
+
+.noteLabels:hover .scheduleIcon, .svheduleIcon:hover{
+  width: 30px;
+  height: 30px;
+  margin-left: -10px;
+
   background-color: rgba(151, 147, 147, 0.753);
   display: inline-block;
 }
