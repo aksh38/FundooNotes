@@ -35,6 +35,7 @@ import { UpdateNotesService } from './service/update-notes.service';
 import { CollaboratorService } from './service/collaborator.service';
 import { ReminderDialogComponent } from './component/reminder-dialog/reminder-dialog.component';
 import { DatePipe } from '@angular/common';
+import { AuthGuard } from './service/auth-service.service';
 
 @NgModule({
   declarations: [
@@ -83,9 +84,10 @@ import { DatePipe } from '@angular/common';
     ImageService,
     UpdateNotesService,
     CollaboratorService,
-    DatePipe
+    DatePipe,
+    AuthGuard
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, LoginComponent]
 })
 export class AppModule 
 {

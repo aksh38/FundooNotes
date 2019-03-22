@@ -12,6 +12,7 @@ import { NotesComponent } from '../component/notes/notes.component';
 import { ArchiveNotesComponent } from '../component/archive-notes/archive-notes.component';
 import { BinComponent } from '../component/bin/bin.component';
 import { LabeledNoteComponent } from '../component/labeled-note/labeled-note.component';
+import { AuthGuard } from '../service/auth-service.service';
 
 const routes: Routes=[
   {
@@ -41,6 +42,7 @@ const routes: Routes=[
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuard],
     children:[
       {
         path:'',

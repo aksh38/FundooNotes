@@ -178,6 +178,8 @@ export class SingleNoteComponent implements OnInit {
     }
   }
   addLabelToNote(event, labelId: LongRange, noteId: LongRange) {
+    console.log("event data")
+    console.log(event)
     this.noteService.addLabelToNote(labelId, noteId)
       .subscribe(
         (response: any) => {

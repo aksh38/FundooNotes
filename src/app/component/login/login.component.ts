@@ -28,10 +28,7 @@ export class LoginComponent implements OnInit {
       if(response.body.statusCode==200)
       {
         this.snackBar.open(response.body.statusMessage, "", {duration:2000, verticalPosition:"top"});
-        
-        console.log(response.headers.get("jwt_token"));
         localStorage.setItem("token", response.headers.get("jwt_token"));
-        console.log(localStorage.getItem("token"));
         localStorage.setItem("userName", this.loginmodel.userName);
         this.router.navigateByUrl("home");
       }
