@@ -36,6 +36,7 @@ import { CollaboratorService } from './service/collaborator.service';
 import { ReminderDialogComponent } from './component/reminder-dialog/reminder-dialog.component';
 import { DatePipe } from '@angular/common';
 import { AuthGuard } from './service/auth-service.service';
+import { SearchComponent } from './component/search/search.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AuthGuard } from './service/auth-service.service';
     SingleNoteComponent,
     CollabDialogComponent,
     ImageDialogComponent,
-    ReminderDialogComponent   
+    ReminderDialogComponent,
+    SearchComponent   
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { Login } from '../model/login.model';
 import { Router } from '@angular/router';
 import { UserInfo } from '../model/userInfo.model';
 import { Observable } from 'rxjs';
+import { CollabUserInfo } from '../model/collabUser.model';
 
 const httpOptions= {headers: new HttpHeaders({'Content-type':'application/json'})};
 
@@ -64,5 +65,10 @@ export class UserService {
   {
     return this.http.get<LongRange>(this.apiUrl+"email/"+emailId, httpOptions);
 
+  }
+
+  getUserDetails()
+  {
+    return this.http.get<CollabUserInfo[]>(this.apiUrl+"/alluser/details", httpOptions);
   }
 }

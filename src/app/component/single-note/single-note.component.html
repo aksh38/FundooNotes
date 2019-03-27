@@ -2,25 +2,23 @@
   <div class="noteGrid" fxLayout="column">
     <mat-card fxFlex style="margin-top: 30px;width: 250px; border-radius: 15px"
       [style.background-color]="myNote.note.color">
-      <mat-card-header>
-        <mat-card-title (click)="openCreateDialog(myNote.note)">
+      <mat-card-header (click)="openCreateDialog(myNote.note)">
+        <mat-card-title >
           <span style="font-size: 17px; width: 100%; font-family: sans-serif;">
             {{myNote.note.title}}
           </span>
-        </mat-card-title>
-
-        <span style="position: absolute; right: 0;" class="buttons">
-          <button mat-icon-button (click)="pinIt(myNote.note)">
-            <mat-icon *ngIf="!myNote.note.pin">
-              <img style="width:20px; height:20px" src="assets/images/pinBeforeClick.svg">
-            </mat-icon>
-            <mat-icon *ngIf="myNote.note.pin">
-              <img style="width:20px; height:20px" src="assets/images/pinAfterClick(1).svg">
-            </mat-icon>
-          </button>
-        </span>
+        </mat-card-title>  
       </mat-card-header>
-
+      <span style="position: absolute; right: 0;top:5%;" class="buttons">
+        <button mat-icon-button (click)="pinIt(myNote.note)">
+          <mat-icon *ngIf="!myNote.note.pin">
+            <img style="width:20px; height:20px" src="assets/images/pinBeforeClick.svg">
+          </mat-icon>
+          <mat-icon *ngIf="myNote.note.pin">
+            <img style="width:20px; height:20px" src="assets/images/pinAfterClick(1).svg">
+          </mat-icon>
+        </button>
+      </span>
       <mat-card-content fxLayout="column" style="margin-bottom: 40px;">
         <div (click)="openCreateDialog(myNote.note)" style="margin-bottom: 10px;padding-left: 15px">
           <span>

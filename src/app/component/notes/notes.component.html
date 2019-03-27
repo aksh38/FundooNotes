@@ -1,19 +1,20 @@
 
 <div fxLayout="column" fxLayoutAlign="left center" style="overflow: hidden; padding-left: 100px; ">
-  <div >
-  <mat-card class="noteEditCard" *ngIf="!expand" fxLayoutAlign="right center" (click)="expandCreateBar()">
+  <div (click)=expandIt() *ngIf="!expand">
+  <mat-card class="noteEditCard"  fxLayoutAlign="right center" (click)="expandIt()">
    <mat-card-content>
      <span style="font-family: sans-serif; font-size: 16px; color: grey; margin-left: 20px;" >Take a note.....</span>
      <button mat-icon-button style="margin-left: 400px"><mat-icon>image</mat-icon></button>
    </mat-card-content>
   </mat-card>
-  
+  </div>
+  <div *ngIf="expand">
   <ng-container fxFlex>
-  <mat-card class="noteEditCard2" *ngIf="expand" fxLayout="column" [style.background-color]="myColor" >
+  <mat-card class="noteEditCard2"  fxLayout="column" [style.background-color]="myColor" >
     <mat-card-header>
         <mat-card-title >
           <span >
-            <textarea matInput matTextareaAutosize matAutosizeMinRows=1 [style.background-color]="myColor" style="font-size: 17px; font-family: sans-serif;overflow: hidden" placeholder="Title" [(ngModel)]="noteDto.title"></textarea>
+            <textarea matInput #title matTextareaAutosize matAutosizeMinRows=1 [style.background-color]="myColor" style="font-size: 17px; font-family: sans-serif;overflow: hidden" placeholder="Title"></textarea>
           </span>
           <span style="position: absolute; right: 0; margin-right: 20px"  >
               <button mat-icon-button >
@@ -24,7 +25,7 @@
       </mat-card-header>
        <mat-card-content >
           <span >
-              <textarea matInput matTextareaAutosize matAutosizeMinRows=1 [style.background-color]="myColor" style="margin-left:20px; height: 40px; font-size: 15px; overflow: hidden" placeholder="note..." [(ngModel)]="noteDto.description"></textarea>
+              <textarea matInput #desc matTextareaAutosize matAutosizeMinRows=1 [style.background-color]="myColor" style="margin-left:20px; height: 40px; font-size: 15px; overflow: hidden" placeholder="note..."></textarea>
             </span>
         </mat-card-content>
 
@@ -50,17 +51,19 @@
             <button mat-menu-item [matMenuTriggerFor]="labelMenu" style="width:100px; height:40px">Add Label</button>
           </mat-menu>
           
-        <button mat-raised-button (click)="closeCreateBar()" [style.background-color]="myColor" style="position: absolute; right: 0; margin-right: 20px ">Close</button>
+        <button mat-raised-button (click)="closeCreateBar(title.value, desc.value)" [style.background-color]="myColor" style="position: absolute; right: 0; margin-right: 20px ">Close</button>
       </mat-card-footer>
   </mat-card>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet">
+</ng-container>
 
-</ng-container>  
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet">
 </div>
+   
 
 
-<div>
+
+<div fxLayout="column">
 <div fxLayout="column" fxLayoutAlign="right right">
 <span style="margin-top:30px;font-size: 10px;"  *ngIf="pinnedNotes ? pinnedNotes.length>0: false ">PINNED</span>
   <div fxLayout={{viewDto.viewStyle}} fxLayoutGap="25px" fxLayout="row" fxLayoutAlign="flex-start" fxLayoutAlign.xs="center center">

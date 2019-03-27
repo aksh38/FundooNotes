@@ -100,7 +100,8 @@ export class SingleNoteComponent implements OnInit {
     this.display=!this.display;
   }
   closeCreateBar() {
-    if (this.noteDto.title !== undefined) {
+    
+    if (this.noteDto.title !== undefined || this.noteDto.description!==undefined) {
       this.noteService.createNote(this.noteDto)
         .subscribe((response: any) => {
           if (response.statusCode == 200) {
@@ -117,7 +118,6 @@ export class SingleNoteComponent implements OnInit {
         });
     }
     this.expand = false;
-
   }
 
   changeColor(color: string) {

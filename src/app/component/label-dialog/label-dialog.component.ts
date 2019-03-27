@@ -36,6 +36,9 @@ updateLabel(label:Label)
 createLabel()
 {
   this.labelDto.labelValue=this.labelValue;
+  let label2=new Label();
+  label2.labelValue=this.labelDto.labelValue;
+  this.labels.push(label2);
   this.labelService.createLabel(this.labelDto).subscribe(
     (response:any)=>  {
       this.getLabels();

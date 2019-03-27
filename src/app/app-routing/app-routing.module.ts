@@ -1,4 +1,4 @@
-import { NgModule} from '@angular/core';
+import { NgModule, Component} from '@angular/core';
 import { LoginComponent } from '../component/login/login.component';
 import { RegisterComponent } from '../component/register/register.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,6 +13,7 @@ import { ArchiveNotesComponent } from '../component/archive-notes/archive-notes.
 import { BinComponent } from '../component/bin/bin.component';
 import { LabeledNoteComponent } from '../component/labeled-note/labeled-note.component';
 import { AuthGuard } from '../service/auth-service.service';
+import { SearchComponent } from '../component/search/search.component';
 
 const routes: Routes=[
   {
@@ -66,6 +67,10 @@ const routes: Routes=[
         path:'labels/:labelValue',
         component:LabeledNoteComponent,
         runGuardsAndResolvers:"always"
+      },
+      {
+        path:'search',
+        component:SearchComponent
       }
     ]
 

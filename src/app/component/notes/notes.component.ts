@@ -22,7 +22,7 @@ export class NotesComponent implements OnInit {
   private allNotes2=new Array<AllNotes>();
   private notes= new Array<AllNotes>();
   private pinnedNotes= new Array<AllNotes>();
-  private expand:boolean;
+  private expand:boolean=false;
   private viewDto=new ViewDto();
   private noteDto=new NoteDto();
   private labels:Label[];
@@ -65,13 +65,18 @@ export class NotesComponent implements OnInit {
     });
   }
   
-  expandCreateBar() {
+  expandIt() {
     this.expand = true;
 
   }
 
-  closeCreateBar() {
-    if (this.noteDto.title !== undefined) {
+  closeCreateBar(title:string, desc:string) {
+    this.expand=false;
+    this.noteDto.title=title;
+    this.noteDto.description=desc;
+    console.log(title);
+    console.log(desc);
+    if (this.noteDto.title !== "" || this.noteDto.description!=="") {
       this.noteService.createNote(this.noteDto)
         .subscribe((response: any) => {
           if (response.statusCode == 200) {
@@ -84,8 +89,10 @@ export class NotesComponent implements OnInit {
           }
         });
     }
-    this.expand = false;
-
+    else{
+      console.log("error is hjere")
+    }
+    
   }
 
   change(flag:boolean)

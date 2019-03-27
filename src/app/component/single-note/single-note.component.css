@@ -22,7 +22,7 @@ input
   border-style: solid;
   border-color:grey;
   border-radius: 50% 50% 50% 50%; 
-  margin:4px;
+  margin:5px;
   width:30px;
   height: 30px;
 }
@@ -38,7 +38,7 @@ input
     box-sizing: border-box;
   }
   .noteCardList > *:not(:last-child) {
-    margin-right: 32px;
+    margin-right: 25px;
   }
   .mat-card-footer
   {
@@ -51,6 +51,7 @@ input
 
 .buttons {  
   display: none;
+
 }
 
 .noteGrid:hover .buttons, .buttons:hover{
@@ -104,7 +105,6 @@ textarea:focus
     outline: 0;
 }
 .field{
-  padding-left: 20px; 
   margin-top: 5%;
 }
 textarea
